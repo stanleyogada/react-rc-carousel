@@ -1,0 +1,16 @@
+.card {
+  padding: 2em;
+  border: 2px solid;
+}
+
+.card h1 {
+  color: red;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.card p {
+  font-style: italic;
+  color: blue;
+}
+/*# sourceMappingURL=index.css.map */
