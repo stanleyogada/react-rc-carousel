@@ -2,66 +2,82 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 type SliderProps = {
   children: React.ReactElement[];
+  nSlidePerView?: number;
 };
 
-export const Slider = ({ children }: SliderProps) => {
+export const Slider = ({ children, nSlidePerView = 3 }: SliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const sliderAnimationInterval = useRef<NodeJS.Timeout | null>(null);
+  const sliderAnimationInterval = useRef<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const getNSlide = () => children.length - 1;
+  const getNSlide = () => children.length - (nSlidePerView - 1);
 
-  const handleSlideChange = useCallback(() => {
-    const container = sliderRef.current;
+  const handleSlideChange = useCallback(
+    (_currentSlide: number) => {
+      const container = sliderRef.current;
 
-    if (container) {
-      // const slideWidth = container.clientWidth;
-      const nextSlide = (currentSlide + 1) % getNSlide();
-      console.log({ nextSlide, currentSlide });
+      if (container) {
+        const nextSlide = _currentSlide ?? currentSlide + 1;
+        console.log({ nextSlide, currentSlide, getNSlide: getNSlide() });
 
-      const hasReachLastSlide = !(nextSlide && nextSlide < getNSlide());
-      const CSSTranslateX = hasReachLastSlide ? 0 : `-${nextSlide}00%`;
+        const hasReachLastSlide = !(nextSlide && nextSlide < getNSlide());
+        const CSSTranslateX = hasReachLastSlide ? 0 : `-${nextSlide}00%`;
 
-      container.querySelectorAll(".slider__slide").forEach((slide) => {
-        //@ts-ignore
-        slide.style.transform = `translateX(${CSSTranslateX})`;
-
-        if (hasReachLastSlide) {
+        container.querySelectorAll(".slider__slide").forEach((slide) => {
           //@ts-ignore
-          slide.style.transition = ".35s ease";
-        } else {
-          //@ts-ignore
-          slide.style.transition = "1s ease";
-        }
-      });
-      setCurrentSlide(nextSlide);
-    }
-  }, [currentSlide]);
+          slide.style.transform = `translateX(${CSSTranslateX})`;
+
+          if (hasReachLastSlide) {
+            //@ts-ignore
+            slide.style.transition = ".35s ease";
+          } else {
+            //@ts-ignore
+            slide.style.transition = "1s ease";
+          }
+        });
+        setCurrentSlide(hasReachLastSlide ? 0 : nextSlide);
+      }
+    },
+    [currentSlide]
+  );
 
   const handleDotClick = useCallback(
     (dot: number) => {
+      console.log({ dot });
+
       handlePauseAnimation();
       setTimeout(() => {
-        setCurrentSlide(dot);
+        handleSlideChange(dot);
       }, 10);
     },
     [handleSlideChange]
   );
 
   const handlePauseAnimation = () => {
-    if (sliderAnimationInterval.current)
+    console.log("pause animation");
+
+    if (sliderAnimationInterval.current) {
       clearInterval(sliderAnimationInterval.current);
+    }
   };
 
   useEffect(() => {
-    // Call handleSlideChange after 3 seconds (adjust as needed)
+    const container = sliderRef.current;
+
+    container?.querySelectorAll(".slider__slide").forEach((slide) => {
+      const CSSWidth = 100 / nSlidePerView;
+      console.log(CSSWidth);
+
+      //@ts-ignore
+      slide.style.width = `${CSSWidth}%`;
+    });
+  }, []);
+
+  useEffect(() => {
     sliderAnimationInterval.current = setInterval(handleSlideChange, 3000);
 
-    // Clean up the interval on component unmount
     return handlePauseAnimation;
   }, [currentSlide, handleSlideChange]);
-
-  // useEffect()
 
   return (
     <div className={`slider`}>
@@ -75,7 +91,7 @@ export const Slider = ({ children }: SliderProps) => {
 
       <div className="slider__dots">
         {Array.from({ length: getNSlide() }, (_, i) => (
-          <div
+          <button
             key={`dot--${i}`}
             className={`slider__dot ${
               i === currentSlide ? "slider__dot--active" : ""

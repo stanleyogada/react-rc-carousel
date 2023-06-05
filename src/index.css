@@ -16,7 +16,6 @@
 
 .slider__slide-container .slider__slide {
   border: 1px solid red;
-  width: 50%;
   flex-shrink: 0;
   transform: translateX(0%);
   transition: 1s ease;
@@ -33,6 +32,11 @@
 }
 
 .slider__dots .slider__dot {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
   flex-shrink: 0;
   width: 10px;
   height: 10px;

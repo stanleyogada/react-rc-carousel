@@ -16,15 +16,14 @@ const meta = {
         defaultValue: { summary: `undefined` },
       },
     },
-
-    // scroll: {
-    //   control: { type: "_" },
-    //   description: `Is used to define whether the scroll-x will be displayed or not.`,
-    //   table: {
-    //     type: { summary: "Boolean" },
-    //     defaultValue: { summary: `false` },
-    //   },
-    // },
+    nSlidePerView: {
+      control: { type: "_" },
+      description: `Indicates how many slides to display per view`,
+      table: {
+        type: { summary: "Number" },
+        defaultValue: { summary: `2` },
+      },
+    },
   },
 } satisfies Meta<typeof Slider>;
 
@@ -35,6 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: [],
+    // nSlidePerView: 2,
   },
   render: (args) => (
     <Slider {...args}>
