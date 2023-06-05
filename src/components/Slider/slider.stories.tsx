@@ -28,10 +28,18 @@ const meta = {
     },
     animationInterval: {
       control: { type: "-" },
-      description: `Indicates how many milliseconds intervsl for the animation slides`,
+      description: `Indicates how many milliseconds interval for the animation slides`,
       table: {
         type: { summary: "Number" },
         defaultValue: { summary: `5000` },
+      },
+    },
+    isPauseOnHover: {
+      // control: { type: "-" },
+      description: `Pauses the animation when hovering on the slider component. Useful for Hero slideshows.`,
+      table: {
+        type: { summary: "Boolean" },
+        defaultValue: { summary: `false` },
       },
     },
     lastSlideAnimation: {
@@ -88,6 +96,7 @@ export const Primary: Story = {
     ],
     nSlidePerView: 2,
     animationInterval: 1000,
+    isPauseOnHover: true,
     changeSlideAnimation: {
       isSlide: true,
       isFade: false,

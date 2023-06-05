@@ -11,6 +11,7 @@ type SliderProps = {
   animationInterval?: number;
   lastSlideAnimation?: SlideAnimation;
   changeSlideAnimation?: SlideAnimation;
+  isPauseOnHover?: boolean;
 };
 
 export const Slider = ({
@@ -31,6 +32,7 @@ export const Slider = ({
     isSlide: "1s ease",
     isFade: false,
   },
+  isPauseOnHover = false,
 }: SliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
@@ -102,11 +104,20 @@ export const Slider = ({
     [handleSlideChange]
   );
 
-  const handlePauseAnimation = () => {
+  const handlePauseAnimation = useCallback(() => {
     console.log("pause animation");
 
     if (sliderAnimationInterval.current) {
       clearInterval(sliderAnimationInterval.current);
+    }
+  }, []);
+
+  const handleStartAnimation = () => {
+    if (shouldAnimate) {
+      sliderAnimationInterval.current = setInterval(
+        handleSlideChange,
+        animationInterval
+      );
     }
   };
 
@@ -123,18 +134,22 @@ export const Slider = ({
   }, []);
 
   useEffect(() => {
-    if (shouldAnimate) {
-      sliderAnimationInterval.current = setInterval(
-        handleSlideChange,
-        animationInterval
-      );
-    }
+    handleStartAnimation();
 
     return handlePauseAnimation;
-  }, [currentSlide, handleSlideChange]);
+  }, [
+    currentSlide,
+    handleSlideChange,
+    handlePauseAnimation,
+    handleStartAnimation,
+  ]);
 
   return (
-    <div className={`slider`}>
+    <div
+      className={`slider`}
+      onMouseOver={isPauseOnHover ? handlePauseAnimation : undefined}
+      onMouseLeave={isPauseOnHover ? handleStartAnimation : undefined}
+    >
       <div className="slider__slide-container" ref={sliderRef}>
         {children.map((slide, index) => (
           <div key={`slide--${index}`} className="slider__slide">
