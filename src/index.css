@@ -31,8 +31,6 @@
   display: flex;
   gap: 5px;
   position: absolute;
-  bottom: 0;
-  left: 50%;
   transform: translate(-50%, 100%);
   border: 2px solid green;
 }

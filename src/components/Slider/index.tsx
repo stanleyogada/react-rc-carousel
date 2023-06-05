@@ -12,6 +12,12 @@ type SliderProps = {
   lastSlideAnimation?: SlideAnimation;
   changeSlideAnimation?: SlideAnimation;
   isPauseOnHover?: boolean;
+  isShowDots?:
+    | {
+        position?: "top-center" | "bottom-center";
+        isOut?: boolean;
+      }
+    | false;
 };
 
 export const Slider = ({
@@ -33,6 +39,10 @@ export const Slider = ({
     isFade: false,
   },
   isPauseOnHover = false,
+  isShowDots = {
+    position: "bottom-center",
+    isOut: true,
+  },
 }: SliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
@@ -128,7 +138,7 @@ export const Slider = ({
       const CSSWidth = 100 / nSlidePerView;
       console.log(CSSWidth);
 
-      //@ts-ignore
+      // @ts-ignore
       slide.style.width = `${CSSWidth}%`;
     });
   }, []);
@@ -143,6 +153,39 @@ export const Slider = ({
     handlePauseAnimation,
     handleStartAnimation,
   ]);
+
+  // useEffect(() => {
+  //   const dots = sliderDotsRef.current;
+
+  //   if (typeof dots === "boolean" && dots) isShowDots = "bottom: 0; left: 50%;";
+  //   if (!dots) isShowDots = "display: none";
+
+  //   // @ts-ignore
+  //   dots?.style = isShowDots;
+  // }, []);
+
+  const dotsStyles = useMemo(() => {
+    if (isShowDots === false)
+      return {
+        display: "none",
+      };
+
+    if (isShowDots.position === "top-center") {
+      return {
+        top: 0,
+        left: "50%",
+        transform: `translate(-50%, ${isShowDots.isOut ? "-100%" : "0"})`,
+      };
+    }
+
+    if (isShowDots.position === "bottom-center") {
+      return {
+        bottom: 0,
+        left: "50%",
+        transform: `translate(-50%, ${isShowDots.isOut ? "100%" : "0"})`,
+      };
+    }
+  }, []);
 
   return (
     <div
@@ -159,7 +202,7 @@ export const Slider = ({
       </div>
 
       {shouldAnimate && (
-        <div className="slider__dots">
+        <div className="slider__dots" style={dotsStyles}>
           {Array.from({ length: getNSlide() }, (_, i) => (
             <button
               key={`dot--${i}`}

@@ -42,14 +42,32 @@ const meta = {
         defaultValue: { summary: `false` },
       },
     },
+    isShowDots: {
+      control: { type: "_" },
+      description: `'false' means the control will be hidden. 'isOut' in the object means the control with be place visually outside Slider component`,
+      table: {
+        type: {
+          summary: `{  
+                      position?: "bottom-center" | ****** "top-center", 
+                      isOut?: boolean | string,
+                    }`,
+        },
+        defaultValue: {
+          summary: ` {  *********
+                      position: "bottom-center"   
+                      isOut: true,
+                    }`,
+        },
+      },
+    },
     lastSlideAnimation: {
       control: { type: "object" },
       description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.`,
       table: {
         type: {
           summary: `{  
-                      isFade: boolean, ******************
-                      isSlide: boolean | string,
+                      isFade?: boolean, ******************
+                      isSlide?: boolean | string,
                     }`,
         },
         defaultValue: {
@@ -66,8 +84,8 @@ const meta = {
       table: {
         type: {
           summary: `{  
-                      isFade: boolean, ******************
-                      isSlide: boolean | string,
+                      isFade?: boolean, ******************
+                      isSlide?: boolean | string,
                     }`,
         },
         defaultValue: {
@@ -97,6 +115,10 @@ export const Primary: Story = {
     nSlidePerView: 2,
     animationInterval: 1000,
     isPauseOnHover: true,
+    isShowDots: {
+      position: "bottom-center",
+      isOut: true,
+    },
     changeSlideAnimation: {
       isSlide: true,
       isFade: false,
