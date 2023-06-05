@@ -1,16 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type SliderProps = {
   children: React.ReactElement[];
   nSlidePerView?: number;
 };
 
-export const Slider = ({ children, nSlidePerView = 3 }: SliderProps) => {
+export const Slider = ({ children, nSlidePerView = 1 }: SliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const getNSlide = () => children.length - (nSlidePerView - 1);
+  const shouldAnimate = useMemo(() => nSlidePerView < children.length, []);
 
   const handleSlideChange = useCallback(
     (_currentSlide: number) => {
@@ -76,7 +77,9 @@ export const Slider = ({ children, nSlidePerView = 3 }: SliderProps) => {
   }, []);
 
   useEffect(() => {
-    sliderAnimationInterval.current = setInterval(handleSlideChange, 3000);
+    if (shouldAnimate) {
+      sliderAnimationInterval.current = setInterval(handleSlideChange, 3000);
+    }
 
     return handlePauseAnimation;
   }, [currentSlide, handleSlideChange]);
@@ -91,17 +94,19 @@ export const Slider = ({ children, nSlidePerView = 3 }: SliderProps) => {
         ))}
       </div>
 
-      <div className="slider__dots">
-        {Array.from({ length: getNSlide() }, (_, i) => (
-          <button
-            key={`dot--${i}`}
-            className={`slider__dot ${
-              i === currentSlide ? "slider__dot--active" : ""
-            }`}
-            onClick={() => handleDotClick(i)}
-          />
-        ))}
-      </div>
+      {shouldAnimate && (
+        <div className="slider__dots">
+          {Array.from({ length: getNSlide() }, (_, i) => (
+            <button
+              key={`dot--${i}`}
+              className={`slider__dot ${
+                i === currentSlide ? "slider__dot--active" : ""
+              }`}
+              onClick={() => handleDotClick(i)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

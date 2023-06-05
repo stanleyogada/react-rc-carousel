@@ -21,7 +21,7 @@ const meta = {
       description: `Indicates how many slides to display per view`,
       table: {
         type: { summary: "Number" },
-        defaultValue: { summary: `2` },
+        defaultValue: { summary: `1` },
       },
     },
   },
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: [],
-    // nSlidePerView: 2,
+    nSlidePerView: 7,
   },
   render: (args) => (
     <Slider {...args}>
