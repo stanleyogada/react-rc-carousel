@@ -9,6 +9,12 @@
   border: 1px solid;
 }
 
+.slider--fade-animation {
+  animation-name: fade;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
 .slider__slide-container {
   display: flex;
   overflow: hidden;
@@ -49,5 +55,15 @@
 .slider__dots .slider__dot--active {
   background-color: #000;
   width: 30px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=index.css.map */

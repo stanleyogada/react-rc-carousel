@@ -29,10 +29,12 @@ export const Slider = ({ children, nSlidePerView = 3 }: SliderProps) => {
 
           if (hasReachLastSlide) {
             //@ts-ignore
-            slide.style.transition = ".35s ease";
+            slide.style.transition = "none";
+            container.classList.add("slider--fade-animation");
           } else {
             //@ts-ignore
             slide.style.transition = "1s ease";
+            container.classList.remove("slider--fade-animation");
           }
         });
         setCurrentSlide(hasReachLastSlide ? 0 : nextSlide);
