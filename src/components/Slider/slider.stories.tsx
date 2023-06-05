@@ -26,6 +26,14 @@ const meta = {
         defaultValue: { summary: `1` },
       },
     },
+    animationInterval: {
+      control: { type: "-" },
+      description: `Indicates how many milliseconds intervsl for the animation slides`,
+      table: {
+        type: { summary: "Number" },
+        defaultValue: { summary: `5000` },
+      },
+    },
     lastSlideAnimation: {
       control: { type: "object" },
       description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.`,
@@ -79,6 +87,7 @@ export const Primary: Story = {
       <div>slide 5</div>,
     ],
     nSlidePerView: 2,
+    animationInterval: 1000,
     changeSlideAnimation: {
       isSlide: true,
       isFade: false,

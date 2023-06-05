@@ -8,6 +8,7 @@ type SlideAnimation = {
 type SliderProps = {
   children?: React.ReactElement[];
   nSlidePerView?: number;
+  animationInterval?: number;
   lastSlideAnimation?: SlideAnimation;
   changeSlideAnimation?: SlideAnimation;
 };
@@ -21,6 +22,7 @@ export const Slider = ({
     <div>slide 5</div>,
   ],
   nSlidePerView = 1,
+  animationInterval = 5000,
   lastSlideAnimation = {
     isSlide: false,
     isFade: true,
@@ -122,7 +124,10 @@ export const Slider = ({
 
   useEffect(() => {
     if (shouldAnimate) {
-      sliderAnimationInterval.current = setInterval(handleSlideChange, 3000);
+      sliderAnimationInterval.current = setInterval(
+        handleSlideChange,
+        animationInterval
+      );
     }
 
     return handlePauseAnimation;
