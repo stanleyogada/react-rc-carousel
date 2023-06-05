@@ -19,7 +19,6 @@ export const Slider = ({ children, nSlidePerView = 1 }: SliderProps) => {
 
       if (container) {
         const nextSlide = _currentSlide ?? currentSlide + 1;
-        console.log({ nextSlide, currentSlide, getNSlide: getNSlide() });
 
         const hasReachLastSlide = !(nextSlide && nextSlide < getNSlide());
         const CSSTranslateX = hasReachLastSlide ? 0 : `-${nextSlide}00%`;
@@ -46,8 +45,6 @@ export const Slider = ({ children, nSlidePerView = 1 }: SliderProps) => {
 
   const handleDotClick = useCallback(
     (dot: number) => {
-      console.log({ dot });
-
       handlePauseAnimation();
       setTimeout(() => {
         handleSlideChange(dot);
