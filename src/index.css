@@ -1,16 +1,49 @@
-.card {
-  padding: 2em;
-  border: 2px solid;
+.slider__slide-container .slider__slide, .slider {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.card h1 {
-  color: red;
-  font-size: 2rem;
-  font-weight: bold;
+.slider {
+  position: relative;
+  border: 1px solid;
 }
 
-.card p {
-  font-style: italic;
-  color: blue;
+.slider__slide-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.slider__slide-container .slider__slide {
+  border: 1px solid red;
+  width: 50%;
+  flex-shrink: 0;
+  transform: translateX(0%);
+  transition: 1s ease;
+}
+
+.slider__dots {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid green;
+}
+
+.slider__dots .slider__dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #9e8585;
+  cursor: pointer;
+  transition: 1s ease;
+}
+
+.slider__dots .slider__dot--active {
+  background-color: #000;
+  width: 30px;
 }
 /*# sourceMappingURL=index.css.map */
