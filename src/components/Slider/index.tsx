@@ -1,11 +1,35 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-type SliderProps = {
-  children: React.ReactElement[];
-  nSlidePerView?: number;
+type SlideAnimation = {
+  isSlide?: boolean | string;
+  isFade?: boolean;
 };
 
-export const Slider = ({ children, nSlidePerView = 1 }: SliderProps) => {
+type SliderProps = {
+  children?: React.ReactElement[];
+  nSlidePerView?: number;
+  lastSlideAnimation?: SlideAnimation;
+  changeSlideAnimation?: SlideAnimation;
+};
+
+export const Slider = ({
+  children = [
+    <div>slide 1</div>,
+    <div>slide 2</div>,
+    <div>slide 3</div>,
+    <div>slide 4</div>,
+    <div>slide 5</div>,
+  ],
+  nSlidePerView = 1,
+  lastSlideAnimation = {
+    isSlide: false,
+    isFade: true,
+  },
+  changeSlideAnimation = {
+    isSlide: "1s ease",
+    isFade: false,
+  },
+}: SliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,32 +37,55 @@ export const Slider = ({ children, nSlidePerView = 1 }: SliderProps) => {
   const getNSlide = () => children.length - (nSlidePerView - 1);
   const shouldAnimate = useMemo(() => nSlidePerView < children.length, []);
 
+  const handleFadeAnimation = () => {
+    const container = sliderRef.current;
+
+    container?.classList.add("slider--fade-animation");
+    setTimeout(() => {
+      container?.classList.remove("slider--fade-animation");
+    }, 1000);
+  };
+
+  const handleSlideAnimation = (
+    slideAnimation: SlideAnimation,
+    animation: string,
+    slide: Element
+  ) => {
+    if (slideAnimation.isSlide) {
+      const { isSlide } = slideAnimation;
+      //@ts-ignore
+      slide.style.transition =
+        typeof isSlide === "string" ? isSlide : animation;
+    } else {
+      //@ts-ignore
+      slide.style.transition = "none";
+    }
+
+    if (slideAnimation.isFade) {
+      handleFadeAnimation();
+    }
+  };
+
   const handleSlideChange = useCallback(
     (_currentSlide: number) => {
       const container = sliderRef.current;
 
-      if (container) {
-        const nextSlide = _currentSlide ?? currentSlide + 1;
+      const nextSlide = _currentSlide ?? currentSlide + 1;
 
-        const hasReachLastSlide = !(nextSlide && nextSlide < getNSlide());
-        const CSSTranslateX = hasReachLastSlide ? 0 : `-${nextSlide}00%`;
+      const hasReachLastSlide = !(nextSlide && nextSlide < getNSlide());
+      const CSSTranslateX = hasReachLastSlide ? 0 : `-${nextSlide}00%`;
 
-        container.querySelectorAll(".slider__slide").forEach((slide) => {
-          //@ts-ignore
-          slide.style.transform = `translateX(${CSSTranslateX})`;
+      container?.querySelectorAll(".slider__slide").forEach((slide) => {
+        //@ts-ignore
+        slide.style.transform = `translateX(${CSSTranslateX})`;
 
-          if (hasReachLastSlide) {
-            //@ts-ignore
-            slide.style.transition = "none";
-            container.classList.add("slider--fade-animation");
-          } else {
-            //@ts-ignore
-            slide.style.transition = "1s ease";
-            container.classList.remove("slider--fade-animation");
-          }
-        });
-        setCurrentSlide(hasReachLastSlide ? 0 : nextSlide);
-      }
+        if (hasReachLastSlide) {
+          handleSlideAnimation(lastSlideAnimation, ".5s ease", slide);
+        } else {
+          handleSlideAnimation(changeSlideAnimation, "1s ease", slide);
+        }
+      });
+      setCurrentSlide(hasReachLastSlide ? 0 : nextSlide);
     },
     [currentSlide]
   );
@@ -48,7 +95,7 @@ export const Slider = ({ children, nSlidePerView = 1 }: SliderProps) => {
       handlePauseAnimation();
       setTimeout(() => {
         handleSlideChange(dot);
-      }, 10);
+      }, 100);
     },
     [handleSlideChange]
   );
