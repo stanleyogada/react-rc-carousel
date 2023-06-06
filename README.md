@@ -17,7 +17,7 @@ A React carousel component with very easy-to-use API for creating dynamic and fl
 
 The "react-rc-carousel" package provides the following features:
 
-- _Dynamic Slide Creation_: The `Slider` component allows for dynamic and flexible creation of slides within the carousel. You have full control over the content displayed in each slide.
+- _Dynamic Slide Creation_: The _Slider_ component allows for dynamic and flexible creation of slides within the carousel. You have full control over the content displayed in each slide.
 
 - _Customizable Slide Display_: You can specify the number of slides to display per view using the `nSlidePerView` prop. This gives you the flexibility to adjust the carousel layout based on your needs.
 
@@ -53,16 +53,16 @@ export default MyComponent;
 
 Props
 
-The `Slider` component accepts the following props:
+The _Slider_ component accepts the following props:
 
-- `children` (`React.Element[]`): Is used to define the slides within the `Slider` component. This approach allows for dynamic and flexible creation of slides within the `Slider` component, giving you control over the displayed content.
-- `nSlidePerView` (`Number`): Indicates how many slides to display per view.
-- `animationInterval` (`Number`): Indicates the interval in milliseconds for the animation between slides.
-- `isPauseOnHover` (`Boolean`): Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
-- `isAutoSlide` (`Boolean`): Automatically starts the sliding animation without any controls click.
-- `isShowDots` (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string }`): Determines the visibility and position of the control dots. Use `{ position: "bottom-center", isOut: true }` to visually place the control dots outside the `Slider` component.
-- `lastSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
-- `changeSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- _children_ (`React.Element[]`): Is used to define the slides within the _Slider_ component. This approach allows for dynamic and flexible creation of slides within the _Slider_ component, giving you control over the displayed content.
+- _nSlidePerView_ (`Number`): Indicates how many slides to display per view.
+- _animationInterval_ (`Number`): Indicates the interval in milliseconds for the animation between slides.
+- _isPauseOnHover_ (`Boolean`): Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
+- _isAutoSlide_ (`Boolean`): Automatically starts the sliding animation without any controls click.
+- _isShowDots_ (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string }`): Determines the visibility and position of the control dots. Use `{ position: "bottom-center", isOut: true }` to visually place the control dots outside the _Slider_ component.
+- _lastSlideAnimation_ (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- _changeSlideAnimation_ (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
 
 ## Examples
 
