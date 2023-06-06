@@ -11,19 +11,38 @@ This "create react library" template is built with `vite` and has a `storybook` 
 - Includes Storybook for component documentation and showcasing.
 - Integrated Tailwind CSS for easy styling and customization.
 
-## Useful Information
+## Basic Usage
 
-- `src/main.txs` is the entry point to `npm run dev`.
-- `src/index.ts` is the entry point to the package published with `npm publish`. So only export components you wish to include in your npm package when it's published.
-- Ensure to create stories to serve as documentation for your users.
+jsx```
+import { Slider } from 'react-rc-carousel';
 
-## Scripts
+const MyComponent = () => {
+return (
+<Slider>
+{/_ Add your slides here _/}
+</Slider>
+);
+};
 
-- `dev`: Start the development server with Vite.
-- `build`: Build the library using Vite and generate CSS using Tailwind CSS.
-- `storybook`: Start the Storybook development server with live CSS reloading.
-- `build-storybook`: Build a static version of the Storybook documentation.
-- `prepublishOnly`: Build the library before publishing.
+export default MyComponent;
+
+```
+
+## Props
+
+Props
+
+The `Slider` component accepts the following props:
+
+- `children` (`React.Element[]`): Is used to define the slides within the `Slider` component. This approach allows for dynamic and flexible creation of slides within the `Slider` component, giving you control over the displayed content.
+- `nSlidePerView` (`Number`): Indicates how many slides to display per view.
+- `animationInterval` (`Number`): Indicates the interval in milliseconds for the animation between slides.
+- `isPauseOnHover` (`Boolean`): Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
+- `isAutoSlide` (`Boolean`): Automatically starts the sliding animation without any controls click.
+- `isShowDots` (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string }`): Determines the visibility and position of the control dots. Use `{ position: "bottom-center", isOut: true }` to visually place the control dots outside the `Slider` component.
+- `lastSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- `changeSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+
 
 ## Getting Started
 
@@ -38,3 +57,4 @@ Feel free to customize the template according to your library's requirements.
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+```
