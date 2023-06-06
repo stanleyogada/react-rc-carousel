@@ -55,14 +55,14 @@ Props
 
 The **_Slider_** component accepts the following props:
 
-- <u>**_children_**</u> (`React.Element[]`): Is used to define the slides within the **_Slider_** component. This approach allows for dynamic and flexible creation of slides within the **_Slider_** component, giving you control over the displayed content.
-- <u>**_nSlidePerView_**</u> (`Number`): Indicates how many slides to display per view.
-- <u>**_animationInterval_**</u> (`Number`): Indicates the interval in milliseconds for the animation between slides.
-- <u>**_isPauseOnHover_**</u> (`Boolean`): Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
-- <u>**_isAutoSlide_**</u> (`Boolean`): Automatically starts the sliding animation without any controls click.
-- <u>**_isShowDots_**</u> (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string }`): Determines the visibility and position of the control dots. Use `{ position: "bottom-center", isOut: true }` to visually place the control dots outside the **_Slider_** component.
-- <u>**_lastSlideAnimation_**</u> (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
-- <u>**_changeSlideAnimation_**</u> (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- **_<u>children</u>_** (`React.Element[]`): Is used to define the slides within the **_Slider_** component. This approach allows for dynamic and flexible creation of slides within the **_Slider_** component, giving you control over the displayed content.
+- **_<u>nSlidePerView</u>_** (`Number`): Indicates how many slides to display per view.
+- **_<u>animationInterval</u>_** (`Number`): Indicates the interval in milliseconds for the animation between slides.
+- **_<u>isPauseOnHover</u>_** (`Boolean`): Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
+- **_<u>isAutoSlide</u>_** (`Boolean`): Automatically starts the sliding animation without any controls click.
+- **_<u>isShowDots</u>_** (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string }`): Determines the visibility and position of the control dots. Use `{ position: "bottom-center", isOut: true }` to visually place the control dots outside the **_Slider_** component.
+- **_<u>lastSlideAnimation</u>_** (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- **_<u>changeSlideAnimation</u>_** (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
 
 ## Examples
 
