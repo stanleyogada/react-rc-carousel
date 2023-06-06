@@ -13,7 +13,7 @@ This "create react library" template is built with `vite` and has a `storybook` 
 
 ## Basic Usage
 
-jsx```
+`
 import { Slider } from 'react-rc-carousel';
 
 const MyComponent = () => {
@@ -25,8 +25,7 @@ return (
 };
 
 export default MyComponent;
-
-```
+`
 
 ## Props
 
@@ -43,7 +42,6 @@ The `Slider` component accepts the following props:
 - `lastSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
 - `changeSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
 
-
 ## Getting Started
 
 To get started with this template, follow these steps:
@@ -57,4 +55,7 @@ Feel free to customize the template according to your library's requirements.
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+```
+
 ```
