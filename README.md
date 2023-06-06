@@ -1,6 +1,8 @@
 # react-rc-carousel
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[react-rc-carousel](https://www.npmjs.com/package/react-rc-carousel)
+[React](https://www.npmjs.com/package/react)
 
 A React carousel component with very easy-to-use API for creating dynamic and flexible slideshows.
 
