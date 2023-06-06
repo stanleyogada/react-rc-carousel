@@ -1,19 +1,43 @@
-# Create React Library Template
+# react-rc-carousel
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A template for creating reusable React libraries using Vite and Storybook.
-This "create react library" template is built with `vite` and has a `storybook` for component documentation.
+A React carousel component with very easy-to-use API for creating dynamic and flexible slideshows.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Props](#props)
+- [Examples](#examples)
+- [License](#license)
 
 ## Features
 
-- Built with Vite, a fast and modern frontend build tool.
-- Includes Storybook for component documentation and showcasing.
-- Integrated Tailwind CSS for easy styling and customization.
+The "react-rc-carousel" package provides the following features:
 
-## Basic Usage
+- _Dynamic Slide Creation_: The `Slider` component allows for dynamic and flexible creation of slides within the carousel. You have full control over the content displayed in each slide.
 
-The output will be:
+- _Customizable Slide Display_: You can specify the number of slides to display per view using the `nSlidePerView` prop. This gives you the flexibility to adjust the carousel layout based on your needs.
+
+- _Slide Animation_: The package supports slide animation effects. You can enable sliding animation between slides and fading animation for the last slide using the `lastSlideAnimation` prop and `changeSlideAnimation` prop, respectively.
+
+- _Automatic Slideshow_: The `isAutoSlide` prop allows you to automatically start the sliding animation without any control click. This is useful for creating automated slideshows or hero banners.
+
+- _Pause on Hover_: The `isPauseOnHover` prop enables the option to pause the animation when hovering over the carousel. This is particularly useful for interactive slideshows or when you want to provide more control to the users.
+
+- _Control Dots_: The package provides control dots that indicate the current active slide. You can customize the visibility and position of these dots using the `isShowDots` prop. Choose to hide the dots or visually place them outside the carousel if desired.
+
+## Installation
+
+You can install the package using npm:
+
+```shell
+npm install react-rc-carousel
+```
+
+## Usage
 
 ```javascript
 import { Slider } from "react-rc-carousel";
@@ -40,15 +64,43 @@ The `Slider` component accepts the following props:
 - `lastSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
 - `changeSlideAnimation` (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
 
-## Getting Started
+## Examples
 
-To get started with this template, follow these steps:
+#### Primary Usage
 
-1. Clone the repository.
-2. Install the dependencies using `npm install`.
-3. Use the available scripts mentioned above to start the development server, build the library, or run Storybook.
+```javascript
+import { Slider } from "react-rc-carousel";
 
-Feel free to customize the template according to your library's requirements.
+const MyComponent = () => {
+  return <Slider>{/_ Add your slides here _/}</Slider>;
+};
+
+export default MyComponent;
+```
+
+#### Advance Usage
+
+```javascript
+import { Slider } from "react-rc-carousel";
+
+const MyComponent = () => {
+  return <Slider>{/_ Add your slides here _/}</Slider>;
+};
+
+export default MyComponent;
+```
+
+#### Complex Usage
+
+```javascript
+import { Slider } from "react-rc-carousel";
+
+const MyComponent = () => {
+  return <Slider>{/_ Add your slides here _/}</Slider>;
+};
+
+export default MyComponent;
+```
 
 ## License
 
