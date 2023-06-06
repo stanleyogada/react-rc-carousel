@@ -159,16 +159,6 @@ export const Slider = ({
     handleStartAnimation,
   ]);
 
-  // useEffect(() => {
-  //   const dots = sliderDotsRef.current;
-
-  //   if (typeof dots === "boolean" && dots) isShowDots = "bottom: 0; left: 50%;";
-  //   if (!dots) isShowDots = "display: none";
-
-  //   // @ts-ignore
-  //   dots?.style = isShowDots;
-  // }, []);
-
   const dotsStyles = useMemo(() => {
     if (isShowDots === false)
       return {
