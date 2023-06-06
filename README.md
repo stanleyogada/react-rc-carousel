@@ -13,19 +13,20 @@ This "create react library" template is built with `vite` and has a `storybook` 
 
 ## Basic Usage
 
-`
-import { Slider } from 'react-rc-carousel';
+The output will be:
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+import { Slider } from "react-rc-carousel";
 
 const MyComponent = () => {
-return (
-<Slider>
-{/_ Add your slides here _/}
-</Slider>
-);
+  return <Slider>{/_ Add your slides here _/}</Slider>;
 };
 
 export default MyComponent;
-`
+```
 
 ## Props
 
