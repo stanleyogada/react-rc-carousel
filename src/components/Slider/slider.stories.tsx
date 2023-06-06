@@ -119,9 +119,11 @@ export const Primary: Story = {
       <div>slide 3</div>,
       <div>slide 4</div>,
       <div>slide 5</div>,
+      <div>slide 8</div>,
+      <div>slide sds</div>,
     ],
-    nSlidePerView: 2,
-    animationInterval: 3000,
+    nSlidePerView: 5,
+    animationInterval: 2000,
     isAutoSlide: true,
     isPauseOnHover: true,
     isShowDots: {
