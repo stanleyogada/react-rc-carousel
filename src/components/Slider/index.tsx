@@ -7,6 +7,7 @@ type SlideAnimation = {
 
 type SliderProps = {
   children?: React.ReactElement[];
+  isAutoSlide?: boolean;
   nSlidePerView?: number;
   animationInterval?: number;
   lastSlideAnimation?: SlideAnimation;
@@ -28,6 +29,7 @@ export const Slider = ({
     <div>slide 4</div>,
     <div>slide 5</div>,
   ],
+  isAutoSlide = true,
   nSlidePerView = 1,
   animationInterval = 5000,
   lastSlideAnimation = {
@@ -144,10 +146,13 @@ export const Slider = ({
   }, []);
 
   useEffect(() => {
-    handleStartAnimation();
+    if (isAutoSlide) {
+      handleStartAnimation();
+    }
 
     return handlePauseAnimation;
   }, [
+    isAutoSlide,
     currentSlide,
     handleSlideChange,
     handlePauseAnimation,
@@ -191,7 +196,9 @@ export const Slider = ({
     <div
       className={`slider`}
       onMouseOver={isPauseOnHover ? handlePauseAnimation : undefined}
-      onMouseLeave={isPauseOnHover ? handleStartAnimation : undefined}
+      onMouseLeave={
+        isPauseOnHover && isAutoSlide ? handleStartAnimation : undefined
+      }
     >
       <div className="slider__slide-container" ref={sliderRef}>
         {children.map((slide, index) => (

@@ -42,6 +42,14 @@ const meta = {
         defaultValue: { summary: `false` },
       },
     },
+    isAutoSlide: {
+      // control: { type: "-" },
+      description: `Automatically starts the sliding animation without any controls click`,
+      table: {
+        type: { summary: "Boolean" },
+        defaultValue: { summary: `true` },
+      },
+    },
     isShowDots: {
       control: { type: "_" },
       description: `'false' means the control will be hidden. 'isOut' in the object means the control with be place visually outside Slider component`,
@@ -65,13 +73,13 @@ const meta = {
       description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.`,
       table: {
         type: {
-          summary: `{  
+          summary: `{ 
                       isFade?: boolean, ******************
                       isSlide?: boolean | string,
                     }`,
         },
         defaultValue: {
-          summary: ` {  ********* 
+          summary: `{ ********* 
                         isSlide: false,
                         isFade: true,
                       }`,
@@ -113,7 +121,8 @@ export const Primary: Story = {
       <div>slide 5</div>,
     ],
     nSlidePerView: 2,
-    animationInterval: 1000,
+    animationInterval: 3000,
+    isAutoSlide: true,
     isPauseOnHover: true,
     isShowDots: {
       position: "bottom-center",
