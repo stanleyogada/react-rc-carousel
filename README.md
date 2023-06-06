@@ -2,7 +2,7 @@
 
 
 [![NPM](https://img.shields.io/npm/v/react-rc-carousel.svg)](https://www.npmjs.com/package/react-rc-carousel)
-<div>ssd</div>
+#####
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.3-blue.svg)](https://www.typescriptlang.org/)
