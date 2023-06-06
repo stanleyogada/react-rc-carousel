@@ -16,9 +16,6 @@ This "create react library" template is built with `vite` and has a `storybook` 
 The output will be:
 
 ```javascript
-function add(a, b) {
-  return a + b;
-}
 import { Slider } from "react-rc-carousel";
 
 const MyComponent = () => {
