@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
 type SlideAnimation = {
@@ -10,10 +17,12 @@ type IsButtonsProp = {
   position?: "bottom-left" | "bottom-right" | "middle-center";
   isRounded?: boolean;
   spaced?: boolean;
+  renderNext?: () => ReactElement;
+  renderPrev?: () => ReactElement;
 };
 
 type SliderProps = {
-  children?: React.ReactElement[];
+  children?: ReactElement[];
   isAutoSlide?: boolean;
   nSlidePerView?: number;
   animationInterval?: number;
@@ -39,6 +48,8 @@ const IS_BUTTONS_INITIAL: IsButtonsProp = {
   position: "middle-center",
   isRounded: true,
   spaced: true,
+  renderNext: undefined,
+  renderPrev: undefined,
 };
 
 export const Slider = ({
@@ -211,6 +222,14 @@ export const Slider = ({
     []
   );
 
+  const isButtonsProp = useMemo(
+    () => ({
+      ...IS_BUTTONS_INITIAL,
+      ...isButtons,
+    }),
+    []
+  );
+
   const buttonsClassName = useMemo(() => {
     let className = "slider__buttons";
 
@@ -218,17 +237,12 @@ export const Slider = ({
       return className;
     }
 
-    const props = {
-      ...IS_BUTTONS_INITIAL,
-      ...isButtons,
-    };
+    className += ` slider__buttons--${isButtonsProp.position}`;
 
-    className += ` slider__buttons--${props.position}`;
-
-    if (props.spaced) {
+    if (isButtonsProp.spaced) {
       className += " slider__buttons--space-between";
     }
-    if (props.isRounded) {
+    if (isButtonsProp.isRounded) {
       className += " slider__buttons--rounded";
     }
 
@@ -266,18 +280,27 @@ export const Slider = ({
           </div>
 
           <div className={buttonsClassName}>
-            <button
-              className="slider__button slider__button--prev"
-              style={buttonStyle}
-            >
-              <IoChevronBack fontSize={"1.4rem"} />
-            </button>
-            <button
-              className="slider__button slider__button--next"
-              style={buttonStyle}
-            >
-              <IoChevronForward fontSize={"1.4rem"} />
-            </button>
+            {isButtonsProp.renderPrev ? (
+              isButtonsProp.renderPrev()
+            ) : (
+              <button
+                className="slider__button slider__button--prev"
+                style={buttonStyle}
+              >
+                <IoChevronBack fontSize={"1.4rem"} />
+              </button>
+            )}
+
+            {isButtonsProp.renderNext ? (
+              isButtonsProp.renderNext()
+            ) : (
+              <button
+                className="slider__button slider__button--next"
+                style={buttonStyle}
+              >
+                <IoChevronForward fontSize={"1.4rem"} />
+              </button>
+            )}
           </div>
         </>
       )}

@@ -89,7 +89,7 @@ const meta = {
     },
     lastSlideAnimation: {
       control: { type: "object" },
-      description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.`,
+      description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects. 'renderNext' and 'renderPrev' are function that can be used to render custom buttons`,
       table: {
         type: {
           summary: `{ 
@@ -153,6 +153,9 @@ export const Primary: Story = {
       position: "bottom-left",
       isRounded: true,
       spaced: true,
+      renderNext() {
+        return <button>next</button>;
+      },
     },
     changeSlideAnimation: {
       isSlide: true,
