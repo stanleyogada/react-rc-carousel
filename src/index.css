@@ -1,7 +1,15 @@
-.slider__slide-container .slider__slide, .slider {
+.slider__buttons, .slider__slide-container .slider__slide, .slider {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.slider__buttons .slider__button, .slider__dots .slider__dot {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
 }
 
 .slider {
@@ -36,11 +44,6 @@
 }
 
 .slider__dots .slider__dot {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  display: inline;
   flex-shrink: 0;
   width: 10px;
   height: 10px;
@@ -53,6 +56,44 @@
 .slider__dots .slider__dot--active {
   background-color: #000;
   width: 30px;
+}
+
+.slider__buttons {
+  border: 2px solid rgb(0, 128, 38);
+  position: absolute;
+  display: flex;
+  top: 100%;
+}
+
+.slider__buttons--bottom-left {
+  left: 0;
+}
+
+.slider__buttons--bottom-right {
+  right: 0;
+}
+
+.slider__buttons--middle-center {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.slider__buttons--space-between {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.slider__buttons--rounded .slider__button {
+  border-radius: 50%;
+}
+
+.slider__buttons .slider__button {
+  width: 25px;
+  height: 25px;
+  border: 2px solid;
+  display: grid;
+  place-items: center;
 }
 
 @keyframes fade {

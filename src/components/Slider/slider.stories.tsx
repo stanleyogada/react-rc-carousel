@@ -6,6 +6,13 @@ import { Slider } from ".";
 const meta = {
   title: "Example/Slider",
   component: Slider,
+  decorators: [
+    (Story) => (
+      <div style={{ paddingBottom: "3rem" }}>
+        <Story />
+      </div>
+    ),
+  ],
   tags: ["autodocs"],
   argTypes: {
     children: {
@@ -65,6 +72,18 @@ const meta = {
                       position: "bottom-center"   
                       isOut: true,
                     }`,
+        },
+      },
+    },
+    isButtons: {
+      control: { type: "_" },
+      description: `'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left' or 'bottom-right'`,
+      table: {
+        type: {
+          // summary: `{
+          //             position?: "bottom-center" | ****** "top-center",
+          //             isOut?: boolean | string,
+          //           }`,
         },
       },
     },
@@ -129,6 +148,11 @@ export const Primary: Story = {
     isShowDots: {
       position: "bottom-center",
       isOut: true,
+    },
+    isButtons: {
+      position: "bottom-left",
+      isRounded: true,
+      spaced: true,
     },
     changeSlideAnimation: {
       isSlide: true,

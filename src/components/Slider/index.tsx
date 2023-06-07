@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
 type SlideAnimation = {
   isSlide?: boolean | string;
   isFade?: boolean;
+};
+
+type IsButtonsProp = {
+  position?: "bottom-left" | "bottom-right" | "middle-center";
+  isRounded?: boolean;
+  spaced?: boolean;
 };
 
 type SliderProps = {
@@ -19,6 +26,19 @@ type SliderProps = {
         isOut?: boolean;
       }
     | false;
+
+  isButtons?: IsButtonsProp | false;
+};
+
+const theme = {
+  color: "#ff7f7f",
+  backgroundColor: "#fff",
+};
+
+const IS_BUTTONS_INITIAL: IsButtonsProp = {
+  position: "middle-center",
+  isRounded: true,
+  spaced: true,
 };
 
 export const Slider = ({
@@ -45,6 +65,7 @@ export const Slider = ({
     position: "bottom-center",
     isOut: true,
   },
+  isButtons = IS_BUTTONS_INITIAL,
 }: SliderProps) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
@@ -159,7 +180,7 @@ export const Slider = ({
     handleStartAnimation,
   ]);
 
-  const dotsStyles = useMemo(() => {
+  const dotsStyle = useMemo(() => {
     if (isShowDots === false)
       return {
         display: "none",
@@ -182,6 +203,38 @@ export const Slider = ({
     }
   }, []);
 
+  const buttonStyle = useMemo(
+    () => ({
+      color: theme.color,
+      backgroundColor: theme.backgroundColor,
+    }),
+    []
+  );
+
+  const buttonsClassName = useMemo(() => {
+    let className = "slider__buttons";
+
+    if (!isButtons) {
+      return className;
+    }
+
+    const props = {
+      ...IS_BUTTONS_INITIAL,
+      ...isButtons,
+    };
+
+    className += ` slider__buttons--${props.position}`;
+
+    if (props.spaced) {
+      className += " slider__buttons--space-between";
+    }
+    if (props.isRounded) {
+      className += " slider__buttons--rounded";
+    }
+
+    return className;
+  }, []);
+
   return (
     <div
       className={`slider`}
@@ -199,17 +252,34 @@ export const Slider = ({
       </div>
 
       {shouldAnimate && (
-        <div className="slider__dots" style={dotsStyles}>
-          {Array.from({ length: getNSlide() }, (_, i) => (
+        <>
+          <div className="slider__dots" style={dotsStyle}>
+            {Array.from({ length: getNSlide() }, (_, i) => (
+              <button
+                key={`dot--${i}`}
+                className={`slider__dot ${
+                  i === currentSlide ? "slider__dot--active" : ""
+                }`}
+                onClick={() => handleDotClick(i)}
+              />
+            ))}
+          </div>
+
+          <div className={buttonsClassName}>
             <button
-              key={`dot--${i}`}
-              className={`slider__dot ${
-                i === currentSlide ? "slider__dot--active" : ""
-              }`}
-              onClick={() => handleDotClick(i)}
-            />
-          ))}
-        </div>
+              className="slider__button slider__button--prev"
+              style={buttonStyle}
+            >
+              <IoChevronBack fontSize={"1.4rem"} />
+            </button>
+            <button
+              className="slider__button slider__button--next"
+              style={buttonStyle}
+            >
+              <IoChevronForward fontSize={"1.4rem"} />
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
