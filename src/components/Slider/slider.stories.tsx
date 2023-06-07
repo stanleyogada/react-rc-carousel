@@ -11,10 +11,14 @@ const meta = {
     (Story) => (
       <SliderThemeProvider
         props={{
-          nSlidePerView: 3,
+          nSlidePerView: 4,
         }}
       >
         <>
+          <div style={{ paddingBottom: "3rem" }}>
+            <Story />
+          </div>
+
           <div style={{ paddingBottom: "3rem" }}>
             <Story />
           </div>
@@ -59,7 +63,7 @@ const meta = {
       description: `Pauses the animation when hovering on the slider component. Useful for Hero slideshows.`,
       table: {
         type: { summary: "Boolean" },
-        defaultValue: { summary: `false` },
+        defaultValue: { summary: `true` },
       },
     },
     isAutoSlide: {
@@ -88,7 +92,7 @@ const meta = {
         },
       },
     },
-    isButtons: {
+    isShowButtons: {
       control: { type: "_" },
       description: `'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left' or 'bottom-right'.'renderNext' and 'renderPrev' are function (which take an 'onClick' function) that can be used to render custom buttons`,
       table: {
@@ -154,7 +158,7 @@ export const Primary: Story = {
       <div>slide 8</div>,
       <div>slide sds</div>,
     ],
-    // nSlidePerView: 5,
+    nSlidePerView: 5,
     animationInterval: 2000,
     isAutoSlide: true,
     isPauseOnHover: true,
@@ -162,7 +166,7 @@ export const Primary: Story = {
       position: "bottom-center",
       isOut: true,
     },
-    isButtons: {
+    isShowButtons: {
       position: "bottom-left",
       isRounded: true,
       spaced: true,

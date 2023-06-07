@@ -16,7 +16,7 @@ import type { SliderProps, SlideAnimationProp } from "src/types";
 
 const theme = {
   color: "#ff7f7f",
-  backgroundColor: "#fff",
+  backgroundColor: "#000",
 };
 
 export const Slider = (props: SliderProps) => {
@@ -38,7 +38,7 @@ export const Slider = (props: SliderProps) => {
     changeSlideAnimation,
     isPauseOnHover,
     isShowDots,
-    isButtons,
+    isShowButtons,
   } = { ...SLIDER_INITIAL_PROPS, ...props };
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -191,10 +191,10 @@ export const Slider = (props: SliderProps) => {
     []
   );
 
-  const isButtonsProp = useMemo(
+  const isShowButtonsProp = useMemo(
     () => ({
-      ...SLIDER_INITIAL_PROPS.isButtons,
-      ...isButtons,
+      ...SLIDER_INITIAL_PROPS.isShowButtons,
+      ...isShowButtons,
     }),
     []
   );
@@ -202,16 +202,16 @@ export const Slider = (props: SliderProps) => {
   const buttonsClassName = useMemo(() => {
     let className = "slider__buttons";
 
-    if (!isButtons) {
+    if (!isShowButtons) {
       return className;
     }
 
-    className += ` slider__buttons--${isButtonsProp.position}`;
+    className += ` slider__buttons--${isShowButtonsProp.position}`;
 
-    if (isButtonsProp.spaced) {
+    if (isShowButtonsProp.spaced) {
       className += " slider__buttons--space-between";
     }
-    if (isButtonsProp.isRounded) {
+    if (isShowButtonsProp.isRounded) {
       className += " slider__buttons--rounded";
     }
 
@@ -241,8 +241,8 @@ export const Slider = (props: SliderProps) => {
       {shouldAnimate && (
         <>
           <div className={buttonsClassName}>
-            {isButtonsProp.renderPrev ? (
-              isButtonsProp.renderPrev(handlePrevButtonClick)
+            {isShowButtonsProp.renderPrev ? (
+              isShowButtonsProp.renderPrev(handlePrevButtonClick)
             ) : (
               <button
                 className="slider__button slider__button--prev"
@@ -253,8 +253,8 @@ export const Slider = (props: SliderProps) => {
               </button>
             )}
 
-            {isButtonsProp.renderNext ? (
-              isButtonsProp.renderNext(handleNextButtonClick)
+            {isShowButtonsProp.renderNext ? (
+              isShowButtonsProp.renderNext(handleNextButtonClick)
             ) : (
               <button
                 className="slider__button slider__button--next"

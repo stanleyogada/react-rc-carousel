@@ -1,3 +1,7 @@
-import type { SliderProps, IsButtonsProp, SlideAnimationProp } from "./Slider";
+import type {
+  SliderProps,
+  isShowButtonsProp,
+  SlideAnimationProp,
+} from "./Slider";
 
-export type { SliderProps, IsButtonsProp, SlideAnimationProp };
+export type { SliderProps, isShowButtonsProp, SlideAnimationProp };

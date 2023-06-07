@@ -16,7 +16,7 @@
   @extend %reset;
   position: relative;
 
-  border: 1px solid;
+  // border: 1px solid;
 
   &--fade-animation {
     animation-name: fade;
@@ -30,8 +30,9 @@
 
     .slider__slide {
       @extend %reset;
+      padding: 3px;
 
-      border: 1px solid red;
+      // border: 1px solid red;
 
       // width: 100%;
       flex-shrink: 0;
@@ -45,7 +46,8 @@
     gap: 5px;
     position: absolute;
     transform: translate(-50%, 100%);
-    border: 2px solid green;
+    // border: 2px solid green;
+    padding: 10px 0;
 
     .slider__dot {
       @extend %reset-button;
@@ -67,10 +69,14 @@
 
   &__buttons {
     @extend %reset;
-    border: 2px solid rgb(0, 128, 38);
+
+    // border: 2px solid rgb(0, 128, 38);
 
     position: absolute;
     display: flex;
+
+    gap: 10px;
+    padding: 10px;
 
     top: 100%;
     &--bottom-left {
@@ -99,9 +105,9 @@
 
     .slider__button {
       @extend %reset-button;
-      width: 25px;
-      height: 25px;
-      border: 2px solid;
+      width: 30px;
+      height: 30px;
+      // border: 2px solid;
       display: grid;
       place-items: center;
       cursor: pointer;

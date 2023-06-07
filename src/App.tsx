@@ -1,12 +1,36 @@
-import { Slider } from "./components/Slider";
+import Hero from "./Hero";
+import Products from "./Products";
+import "./App.scss";
+import { SliderThemeProvider } from "./contexts";
 
 function App() {
   return (
     <>
-      <Slider
-        title="Slider 1"
-        description="sdfasdas d asd asd as da sd ad as d"
-      />
+      <Hero />
+
+      <br />
+      <br />
+
+      <SliderThemeProvider
+        props={{
+          nSlidePerView: 1,
+          isShowDots: false,
+        }}
+      >
+        <Products heading="Top Products" />
+        <Products heading="New Products" />
+        <Products heading="Hot Popular" />
+      </SliderThemeProvider>
+
+      <SliderThemeProvider
+        props={{
+          nSlidePerView: 2,
+          isAutoSlide: false,
+        }}
+      >
+        <Products heading="Featured Products" />
+        <Products heading="Deals For June" />
+      </SliderThemeProvider>
     </>
   );
 }

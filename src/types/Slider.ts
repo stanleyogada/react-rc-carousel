@@ -5,7 +5,7 @@ type SlideAnimationProp = {
   isFade?: boolean;
 };
 
-type IsButtonsProp = {
+type isShowButtonsProp = {
   position?: "bottom-left" | "bottom-right" | "middle-center";
   isRounded?: boolean;
   spaced?: boolean;
@@ -28,7 +28,7 @@ type SliderProps = {
       }
     | false;
 
-  isButtons?: IsButtonsProp | false;
+  isShowButtons?: isShowButtonsProp | false;
 };
 
-export type { SliderProps, IsButtonsProp, SlideAnimationProp };
+export type { SliderProps, isShowButtonsProp, SlideAnimationProp };

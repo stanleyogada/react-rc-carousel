@@ -12,12 +12,12 @@ const SLIDER_INITIAL_PROPS: SliderProps = {
     isSlide: "1s ease",
     isFade: false,
   },
-  isPauseOnHover: false,
+  isPauseOnHover: true,
   isShowDots: {
     position: "bottom-center",
     isOut: true,
   },
-  isButtons: {
+  isShowButtons: {
     position: "middle-center",
     isRounded: true,
     spaced: true,

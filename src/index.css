@@ -14,7 +14,6 @@
 
 .slider {
   position: relative;
-  border: 1px solid;
 }
 
 .slider--fade-animation {
@@ -29,7 +28,7 @@
 }
 
 .slider__slide-container .slider__slide {
-  border: 1px solid red;
+  padding: 3px;
   flex-shrink: 0;
   transform: translateX(0%);
   transition: 1s ease;
@@ -40,7 +39,7 @@
   gap: 5px;
   position: absolute;
   transform: translate(-50%, 100%);
-  border: 2px solid green;
+  padding: 10px 0;
 }
 
 .slider__dots .slider__dot {
@@ -59,9 +58,10 @@
 }
 
 .slider__buttons {
-  border: 2px solid rgb(0, 128, 38);
   position: absolute;
   display: flex;
+  gap: 10px;
+  padding: 10px;
   top: 100%;
 }
 
@@ -89,9 +89,8 @@
 }
 
 .slider__buttons .slider__button {
-  width: 25px;
-  height: 25px;
-  border: 2px solid;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
   cursor: pointer;

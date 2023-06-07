@@ -11,7 +11,7 @@ const SliderThemeProvider = ({
   props,
 }: {
   props: Props;
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
 }) => {
   const value = useMemo(() => props, [props]);
 
