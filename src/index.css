@@ -94,6 +94,7 @@
   border: 2px solid;
   display: grid;
   place-items: center;
+  cursor: pointer;
 }
 
 @keyframes fade {
