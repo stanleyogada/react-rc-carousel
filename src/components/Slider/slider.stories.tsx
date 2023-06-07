@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Slider } from ".";
+import { SliderThemeProvider } from "src/contexts";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/
 const meta = {
@@ -8,9 +9,21 @@ const meta = {
   component: Slider,
   decorators: [
     (Story) => (
-      <div style={{ paddingBottom: "3rem" }}>
-        <Story />
-      </div>
+      <SliderThemeProvider
+        props={{
+          nSlidePerView: 3,
+        }}
+      >
+        <>
+          <div style={{ paddingBottom: "3rem" }}>
+            <Story />
+          </div>
+
+          <div style={{ paddingBottom: "3rem" }}>
+            <Story />
+          </div>
+        </>
+      </SliderThemeProvider>
     ),
   ],
   tags: ["autodocs"],
@@ -141,7 +154,7 @@ export const Primary: Story = {
       <div>slide 8</div>,
       <div>slide sds</div>,
     ],
-    nSlidePerView: 5,
+    // nSlidePerView: 5,
     animationInterval: 2000,
     isAutoSlide: true,
     isPauseOnHover: true,

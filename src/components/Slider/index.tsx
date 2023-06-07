@@ -1,6 +1,7 @@
 import {
   ReactElement,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -8,81 +9,71 @@ import {
 } from "react";
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
-type SlideAnimation = {
-  isSlide?: boolean | string;
-  isFade?: boolean;
-};
+import { SLIDER_INITIAL_PROPS } from "src/constants";
+import useSliderThemeProvider from "src/contexts/useSliderThemeProvider";
 
-type IsButtonsProp = {
-  position?: "bottom-left" | "bottom-right" | "middle-center";
-  isRounded?: boolean;
-  spaced?: boolean;
-  renderNext?: (onClick: () => void) => ReactElement;
-  renderPrev?: (onClick: () => void) => ReactElement;
-};
-
-type SliderProps = {
-  children?: ReactElement[];
-  isAutoSlide?: boolean;
-  nSlidePerView?: number;
-  animationInterval?: number;
-  lastSlideAnimation?: SlideAnimation;
-  changeSlideAnimation?: SlideAnimation;
-  isPauseOnHover?: boolean;
-  isShowDots?:
-    | {
-        position?: "top-center" | "bottom-center";
-        isOut?: boolean;
-      }
-    | false;
-
-  isButtons?: IsButtonsProp | false;
-};
+import type { SliderProps, SlideAnimationProp } from "src/types";
 
 const theme = {
   color: "#ff7f7f",
   backgroundColor: "#fff",
 };
 
-const IS_BUTTONS_INITIAL: IsButtonsProp = {
-  position: "middle-center",
-  isRounded: true,
-  spaced: true,
-  renderNext: undefined,
-  renderPrev: undefined,
-};
+export const Slider = (
+  // {
+  // children = [
+  //   <div>slide 1</div>,
+  //   <div>slide 2</div>,
+  //   <div>slide 3</div>,
+  //   <div>slide 4</div>,
+  //   <div>slide 5</div>,
+  // ],
+  // isAutoSlide = true,
+  // nSlidePerView = 1,
+  // animationInterval = 5000,
+  // lastSlideAnimation = {
+  //   isSlide: false,
+  //   isFade: true,
+  // },
+  // changeSlideAnimation = {
+  //   isSlide: "1s ease",
+  //   isFade: false,
+  // },
+  // isPauseOnHover = false,
+  // isShowDots = {
+  //   position: "bottom-center",
+  //   isOut: true,
+  // },
+  // isButtons = IS_BUTTONS_INITIAL,
+  // }
+  props: SliderProps
+) => {
+  const contextProps = useSliderThemeProvider();
+  props = { ...(contextProps || {}), ...props };
 
-export const Slider = ({
-  children = [
-    <div>slide 1</div>,
-    <div>slide 2</div>,
-    <div>slide 3</div>,
-    <div>slide 4</div>,
-    <div>slide 5</div>,
-  ],
-  isAutoSlide = true,
-  nSlidePerView = 1,
-  animationInterval = 5000,
-  lastSlideAnimation = {
-    isSlide: false,
-    isFade: true,
-  },
-  changeSlideAnimation = {
-    isSlide: "1s ease",
-    isFade: false,
-  },
-  isPauseOnHover = false,
-  isShowDots = {
-    position: "bottom-center",
-    isOut: true,
-  },
-  isButtons = IS_BUTTONS_INITIAL,
-}: SliderProps) => {
+  const {
+    children = [
+      <div>slide 1</div>,
+      <div>slide 2</div>,
+      <div>slide 3</div>,
+      <div>slide 4</div>,
+      <div>slide 5</div>,
+    ],
+    isAutoSlide,
+    nSlidePerView,
+    animationInterval,
+    lastSlideAnimation,
+    changeSlideAnimation,
+    isPauseOnHover,
+    isShowDots,
+    isButtons,
+  } = { ...SLIDER_INITIAL_PROPS, ...props };
+
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const getNSlide = () => children.length - (nSlidePerView - 1);
+  // @ts-ignore
+  const getNSlide = () => children.length - (nSlidePerView - 1); // @ts-ignore
   const shouldAnimate = useMemo(() => nSlidePerView < children.length, []);
 
   const handleFadeAnimation = () => {
@@ -95,7 +86,7 @@ export const Slider = ({
   };
 
   const handleSlideAnimation = (
-    slideAnimation: SlideAnimation,
+    slideAnimation: SlideAnimationProp,
     animation: string,
     slide: Element
   ) => {
@@ -128,8 +119,10 @@ export const Slider = ({
         slide.style.transform = `translateX(${CSSTranslateX})`;
 
         if (hasReachLastSlide) {
+          // @ts-ignore
           handleSlideAnimation(lastSlideAnimation, ".5s ease", slide);
         } else {
+          // @ts-ignore
           handleSlideAnimation(changeSlideAnimation, "1s ease", slide);
         }
       });
@@ -169,6 +162,7 @@ export const Slider = ({
     const container = sliderRef.current;
 
     container?.querySelectorAll(".slider__slide").forEach((slide) => {
+      // @ts-ignore
       const CSSWidth = 100 / nSlidePerView;
       console.log(CSSWidth);
 
@@ -197,18 +191,21 @@ export const Slider = ({
         display: "none",
       };
 
+    // @ts-ignore
     if (isShowDots.position === "top-center") {
       return {
         top: 0,
         left: "50%",
+        // @ts-ignore
         transform: `translate(-50%, ${isShowDots.isOut ? "-100%" : "0"})`,
       };
     }
-
+    // @ts-ignore
     if (isShowDots.position === "bottom-center") {
       return {
         bottom: 0,
         left: "50%",
+        // @ts-ignore
         transform: `translate(-50%, ${isShowDots.isOut ? "100%" : "0"})`,
       };
     }
@@ -224,7 +221,7 @@ export const Slider = ({
 
   const isButtonsProp = useMemo(
     () => ({
-      ...IS_BUTTONS_INITIAL,
+      ...SLIDER_INITIAL_PROPS.isButtons,
       ...isButtons,
     }),
     []
