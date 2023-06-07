@@ -17,8 +17,8 @@ type IsButtonsProp = {
   position?: "bottom-left" | "bottom-right" | "middle-center";
   isRounded?: boolean;
   spaced?: boolean;
-  renderNext?: () => ReactElement;
-  renderPrev?: () => ReactElement;
+  renderNext?: (onClick: () => void) => ReactElement;
+  renderPrev?: (onClick: () => void) => ReactElement;
 };
 
 type SliderProps = {
@@ -138,11 +138,11 @@ export const Slider = ({
     [currentSlide]
   );
 
-  const handleDotClick = useCallback(
-    (dot: number) => {
+  const handleControlClick = useCallback(
+    (currentSlide: number) => {
       handlePauseAnimation();
       setTimeout(() => {
-        handleSlideChange(dot);
+        handleSlideChange(currentSlide);
       }, 100);
     },
     [handleSlideChange]
@@ -249,6 +249,10 @@ export const Slider = ({
     return className;
   }, []);
 
+  const handleNextButtonClick = () => handleControlClick(currentSlide + 1);
+  const handlePrevButtonClick = () =>
+    currentSlide > 0 && handleControlClick(currentSlide - 1);
+
   return (
     <div
       className={`slider`}
@@ -274,29 +278,31 @@ export const Slider = ({
                 className={`slider__dot ${
                   i === currentSlide ? "slider__dot--active" : ""
                 }`}
-                onClick={() => handleDotClick(i)}
+                onClick={() => handleControlClick(i)}
               />
             ))}
           </div>
 
           <div className={buttonsClassName}>
             {isButtonsProp.renderPrev ? (
-              isButtonsProp.renderPrev()
+              isButtonsProp.renderPrev(handlePrevButtonClick)
             ) : (
               <button
                 className="slider__button slider__button--prev"
                 style={buttonStyle}
+                onClick={handlePrevButtonClick}
               >
                 <IoChevronBack fontSize={"1.4rem"} />
               </button>
             )}
 
             {isButtonsProp.renderNext ? (
-              isButtonsProp.renderNext()
+              isButtonsProp.renderNext(handleNextButtonClick)
             ) : (
               <button
                 className="slider__button slider__button--next"
                 style={buttonStyle}
+                onClick={handleNextButtonClick}
               >
                 <IoChevronForward fontSize={"1.4rem"} />
               </button>

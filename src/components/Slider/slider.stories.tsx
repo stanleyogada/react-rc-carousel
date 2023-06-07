@@ -77,7 +77,7 @@ const meta = {
     },
     isButtons: {
       control: { type: "_" },
-      description: `'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left' or 'bottom-right'`,
+      description: `'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left' or 'bottom-right'.'renderNext' and 'renderPrev' are function (which take an 'onClick' function) that can be used to render custom buttons`,
       table: {
         type: {
           // summary: `{
@@ -89,7 +89,7 @@ const meta = {
     },
     lastSlideAnimation: {
       control: { type: "object" },
-      description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects. 'renderNext' and 'renderPrev' are function that can be used to render custom buttons`,
+      description: `A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.`,
       table: {
         type: {
           summary: `{ 
@@ -153,8 +153,8 @@ export const Primary: Story = {
       position: "bottom-left",
       isRounded: true,
       spaced: true,
-      renderNext() {
-        return <button>next</button>;
+      renderNext: (onClick) => {
+        return <button onClick={onClick}>next</button>;
       },
     },
     changeSlideAnimation: {
