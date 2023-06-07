@@ -19,35 +19,7 @@ const theme = {
   backgroundColor: "#fff",
 };
 
-export const Slider = (
-  // {
-  // children = [
-  //   <div>slide 1</div>,
-  //   <div>slide 2</div>,
-  //   <div>slide 3</div>,
-  //   <div>slide 4</div>,
-  //   <div>slide 5</div>,
-  // ],
-  // isAutoSlide = true,
-  // nSlidePerView = 1,
-  // animationInterval = 5000,
-  // lastSlideAnimation = {
-  //   isSlide: false,
-  //   isFade: true,
-  // },
-  // changeSlideAnimation = {
-  //   isSlide: "1s ease",
-  //   isFade: false,
-  // },
-  // isPauseOnHover = false,
-  // isShowDots = {
-  //   position: "bottom-center",
-  //   isOut: true,
-  // },
-  // isButtons = IS_BUTTONS_INITIAL,
-  // }
-  props: SliderProps
-) => {
+export const Slider = (props: SliderProps) => {
   const contextProps = useSliderThemeProvider();
   props = { ...(contextProps || {}), ...props };
 
@@ -268,18 +240,6 @@ export const Slider = (
 
       {shouldAnimate && (
         <>
-          <div className="slider__dots" style={dotsStyle}>
-            {Array.from({ length: getNSlide() }, (_, i) => (
-              <button
-                key={`dot--${i}`}
-                className={`slider__dot ${
-                  i === currentSlide ? "slider__dot--active" : ""
-                }`}
-                onClick={() => handleControlClick(i)}
-              />
-            ))}
-          </div>
-
           <div className={buttonsClassName}>
             {isButtonsProp.renderPrev ? (
               isButtonsProp.renderPrev(handlePrevButtonClick)
@@ -304,6 +264,18 @@ export const Slider = (
                 <IoChevronForward fontSize={"1.4rem"} />
               </button>
             )}
+          </div>
+
+          <div className="slider__dots" style={dotsStyle}>
+            {Array.from({ length: getNSlide() }, (_, i) => (
+              <button
+                key={`dot--${i}`}
+                className={`slider__dot ${
+                  i === currentSlide ? "slider__dot--active" : ""
+                }`}
+                onClick={() => handleControlClick(i)}
+              />
+            ))}
           </div>
         </>
       )}
