@@ -188,6 +188,24 @@ export const Slider = (props: SliderProps) => {
     handleStartAnimation,
   ]);
 
+  const dotsRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const container = dotsRef.current;
+
+    if (container) {
+      container?.querySelectorAll(".slider__dot").forEach((dot) => {
+        (dot as HTMLButtonElement).style.backgroundColor =
+          theme.backgroundColor;
+      });
+
+      const dotActive: HTMLButtonElement = container.querySelector(
+        ".slider__dot--active"
+      ) as HTMLButtonElement;
+
+      dotActive.style.backgroundColor = theme.color;
+    }
+  }, []);
+
   const dotsStyle = useMemo(() => {
     if (isShowDots === false)
       return {
@@ -297,7 +315,7 @@ export const Slider = (props: SliderProps) => {
             )}
           </div>
 
-          <div className="slider__dots" style={dotsStyle}>
+          <div className="slider__dots" style={dotsStyle} ref={dotsRef}>
             {Array.from({ length: getNSlide() }, (_, i) => (
               <button
                 key={`dot--${i}`}
