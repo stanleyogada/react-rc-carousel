@@ -65,7 +65,6 @@ export const Slider = (props: SliderProps) => {
   }, []);
 
   // useEffect(() => {
-  //   console.log(nSlidePerView, breakpoints, innerWidth);
   // }, [nSlidePerView]);
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -110,8 +109,6 @@ export const Slider = (props: SliderProps) => {
 
   const handleSlideChange = useCallback(
     (_currentSlide: number) => {
-      console.log("handleSlideChange");
-
       const container = sliderRef.current;
 
       const nextSlide = _currentSlide ?? currentSlide + 1;
@@ -138,8 +135,6 @@ export const Slider = (props: SliderProps) => {
 
   const handleControlClick = useCallback(
     (currentSlide: number) => {
-      console.log("handleControlClick");
-
       handlePauseAnimation();
       setTimeout(() => {
         handleSlideChange(currentSlide);
@@ -149,8 +144,6 @@ export const Slider = (props: SliderProps) => {
   );
 
   const handlePauseAnimation = useCallback(() => {
-    console.log("handlePauseAnimation");
-
     if (sliderAnimationInterval.current) {
       clearInterval(sliderAnimationInterval.current);
     }
@@ -272,13 +265,9 @@ export const Slider = (props: SliderProps) => {
   }, []);
 
   const handleNextButtonClick = () => {
-    console.log("handleNextButtonClick");
-
     handleControlClick(currentSlide + 1);
   };
   const handlePrevButtonClick = () => {
-    console.log("handlePrevButtonClick");
-
     currentSlide > 0 && handleControlClick(currentSlide - 1);
   };
 
