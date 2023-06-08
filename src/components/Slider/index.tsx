@@ -30,6 +30,8 @@ export const Slider = (props: SliderProps) => {
     theme,
   } = { ...SLIDER_INITIAL_PROPS, ...props };
 
+  console.log(theme);
+
   const [nSlidePerView, setNSlidePerView] = useState<number | undefined>(
     __nSlidePerView
   );

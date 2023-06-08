@@ -14,13 +14,17 @@ function App() {
       <SliderThemeProvider
         props={{
           nSlidePerView: 1,
-          isShowDots: false,
+          // isShowDots: false,
           breakpoints: [
             { width: 391, nSlidePerView: 1 },
             { width: 592, nSlidePerView: 2 },
             { width: 830, nSlidePerView: 3 },
             { width: 920, nSlidePerView: 4 },
           ],
+          theme: {
+            backgroundColor: "#ffaaaa",
+            color: "red",
+          },
         }}
       >
         <Products heading="Top Products" />
