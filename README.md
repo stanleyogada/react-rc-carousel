@@ -69,59 +69,69 @@ Props
 The **_Slider_** component accepts the following props:
 
 - children:
-  -- Description: Is used to define the slides within the Slider component. This approach allows for dynamic and flexible creation of slides within the Slider component, giving you control over the displayed content.
-  -- Type: `React.Element[]`
-  -- Default Value: `5 DIV elements`
+
+  - Description: Is used to define the slides within the Slider component. This approach allows for dynamic and flexible creation of slides within the Slider component, giving you control over the displayed content.
+  - Type: `React.Element[]`
+  - Default Value: `5 DIV elements`
 
 - nSlidePerView:
-  -- Description: Indicates how many slides to display per view.
-  -- Type: `Number`
-  -- Default Value: `1`
+
+  - Description: Indicates how many slides to display per view.
+  - Type: `Number`
+  - Default Value: `1`
 
 - animationInterval:
-  -- Description: Indicates the interval in milliseconds for the animation slides.
-  -- Type: `Number`
-  -- Default Value: `5000`
+
+  - Description: Indicates the interval in milliseconds for the animation slides.
+  - Type: `Number`
+  - Default Value: `5000`
 
 - isPauseOnHover:
-  -- Description: Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
-  -- Type: `Boolean`
-  -- Default Value: `true`
+
+  - Description: Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
+  - Type: `Boolean`
+  - Default Value: `true`
 
 - isAutoSlide:
-  -- Description: Automatically starts the sliding animation without any controls click.
-  -- Type: `Boolean`
-  -- Default Value: `true`
+
+  - Description: Automatically starts the sliding animation without any controls click.
+  - Type: `Boolean`
+  - Default Value: `true`
 
 - isShowDots:
-  -- Description: 'false' means the control will be hidden. 'isOut' in the object means the control will be visually placed outside the Slider component.
-  -- Type: `{ position?: 'bottom-center' | 'top-center', isOut?: boolean | string }`
-  -- Default Value: `{ position: 'bottom-center', isOut: true }`
+
+  - Description: 'false' means the control will be hidden. 'isOut' in the object means the control will be visually placed outside the Slider component.
+  - Type: `{ position?: 'bottom-center' | 'top-center', isOut?: boolean | string }`
+  - Default Value: `{ position: 'bottom-center', isOut: true }`
 
 - isShowButtons:
-  -- Description: 'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left', or 'bottom-right'. 'renderNext' and 'renderPrev' are functions (which take an 'onClick' function) that can be used to render custom buttons.
-  -- Type: `{ position?: 'bottom-center' | 'top-center', isOut?: boolean | string }`
-  -- Default Value: `{ position: 'bottom-center', isOut: true }`
+
+  - Description: 'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left', or 'bottom-right'. 'renderNext' and 'renderPrev' are functions (which take an 'onClick' function) that can be used to render custom buttons.
+  - Type: `{ position?: 'bottom-center' | 'top-center', isOut?: boolean | string }`
+  - Default Value: `{ position: 'bottom-center', isOut: true }`
 
 - theme:
-  -- Description: The theme object typically includes properties such as 'backgroundColor' and 'color', allowing you to specify the desired background color and text color, respectively.
-  -- Type: `{ color: string, backgroundColor: string }`
-  -- Default Value: `{ color: '#000', backgroundColor: '#bbb' }`
+
+  - Description: The theme object typically includes properties such as 'backgroundColor' and 'color', allowing you to specify the desired background color and text color, respectively.
+  - Type: `{ color: string, backgroundColor: string }`
+  - Default Value: `{ color: '#000', backgroundColor: '#bbb' }`
 
 - breakpoints:
-  -- Description: NOTE: 'width' must be in ascending order from smallest to largest. They are typically used in responsive design to ensure that content is displayed appropriately across different devices and screen sizes.
-  -- Type: `{ width?: number, nSlidePerView: number }[]`
-  -- Default Value: `undefined`
+
+  - Description: NOTE: 'width' must be in ascending order from smallest to largest. They are typically used in responsive design to ensure that content is displayed appropriately across different devices and screen sizes.
+  - Type: `{ width?: number, nSlidePerView: number }[]`
+  - Default Value: `undefined`
 
 - lastSlideAnimation:
-  -- Description: A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.
-  -- Type: `{ isFade?: boolean, isSlide?: boolean | string }`
-  -- Default Value: `{ isSlide: false, isFade: true }`
+
+  - Description: A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.
+  - Type: `{ isFade?: boolean, isSlide?: boolean | string }`
+  - Default Value: `{ isSlide: false, isFade: true }`
 
 - changeSlideAnimation:
-  -- Description: A property that determines the animation for CHANGING SLIDES. It also accepts an optional 'SlideAnimation' type, allowing you to specify the desired animation effect using the 'isSlide' and 'isFade' properties.
-  -- Type: `{ isFade?: boolean, isSlide?: boolean | string }`
-  -- Default Value: `{ isFade: false, isSlide: '1s ease' }`
+  - Description: A property that determines the animation for CHANGING SLIDES. It also accepts an optional 'SlideAnimation' type, allowing you to specify the desired animation effect using the 'isSlide' and 'isFade' properties.
+  - Type: `{ isFade?: boolean, isSlide?: boolean | string }`
+  - Default Value: `{ isFade: false, isSlide: '1s ease' }`
 
 ## Examples
 
