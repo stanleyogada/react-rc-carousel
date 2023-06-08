@@ -3,8 +3,11 @@ import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
 import { SLIDER_INITIAL_PROPS } from "src/constants";
 import useSliderThemeProvider from "src/contexts/useSliderThemeProvider";
+import { useSwipe } from "src/hooks";
 
 import type { SliderProps, SlideAnimationProp, BreakPoint } from "src/types";
+
+const MOBILE_SCREEN = 400;
 
 export const Slider = (props: SliderProps) => {
   const contextProps = useSliderThemeProvider();
@@ -30,8 +33,6 @@ export const Slider = (props: SliderProps) => {
     theme,
   } = { ...SLIDER_INITIAL_PROPS, ...props };
 
-  console.log(theme);
-
   const [nSlidePerView, setNSlidePerView] = useState<number | undefined>(
     __nSlidePerView
   );
@@ -46,7 +47,7 @@ export const Slider = (props: SliderProps) => {
     if (breakpoints) {
       const handleResize = () => {
         let current: BreakPoint | undefined = undefined;
-        console.log(innerWidth <= breakpoints[0].width);
+
         for (let i = 0; i < breakpoints.length; i++) {
           if (innerWidth <= breakpoints[i].width) {
             current = breakpoints[i];
@@ -63,9 +64,9 @@ export const Slider = (props: SliderProps) => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(nSlidePerView, breakpoints, innerWidth);
-  }, [nSlidePerView]);
+  // useEffect(() => {
+  //   console.log(nSlidePerView, breakpoints, innerWidth);
+  // }, [nSlidePerView]);
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
@@ -109,6 +110,8 @@ export const Slider = (props: SliderProps) => {
 
   const handleSlideChange = useCallback(
     (_currentSlide: number) => {
+      console.log("handleSlideChange");
+
       const container = sliderRef.current;
 
       const nextSlide = _currentSlide ?? currentSlide + 1;
@@ -135,6 +138,8 @@ export const Slider = (props: SliderProps) => {
 
   const handleControlClick = useCallback(
     (currentSlide: number) => {
+      console.log("handleControlClick");
+
       handlePauseAnimation();
       setTimeout(() => {
         handleSlideChange(currentSlide);
@@ -144,7 +149,7 @@ export const Slider = (props: SliderProps) => {
   );
 
   const handlePauseAnimation = useCallback(() => {
-    console.log("pause animation");
+    console.log("handlePauseAnimation");
 
     if (sliderAnimationInterval.current) {
       clearInterval(sliderAnimationInterval.current);
@@ -266,14 +271,34 @@ export const Slider = (props: SliderProps) => {
     return className;
   }, []);
 
-  const handleNextButtonClick = () => handleControlClick(currentSlide + 1);
-  const handlePrevButtonClick = () =>
+  const handleNextButtonClick = () => {
+    console.log("handleNextButtonClick");
+
+    handleControlClick(currentSlide + 1);
+  };
+  const handlePrevButtonClick = () => {
+    console.log("handlePrevButtonClick");
+
     currentSlide > 0 && handleControlClick(currentSlide - 1);
+  };
+
+  // SWIPING
+
+  const { sliderMainRef } = useSwipe({
+    onLeft: handleNextButtonClick,
+    onRight: handlePrevButtonClick,
+    currentSlide,
+  });
 
   return (
     <div
       className={`slider`}
-      onMouseOver={isPauseOnHover ? handlePauseAnimation : undefined}
+      ref={sliderMainRef}
+      onMouseOver={
+        innerWidth > MOBILE_SCREEN && isPauseOnHover
+          ? handlePauseAnimation
+          : undefined
+      }
       onMouseLeave={
         isPauseOnHover && isAutoSlide ? handleStartAnimation : undefined
       }
