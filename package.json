@@ -1,6 +1,6 @@
 {
   "name": "react-rc-carousel",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
@@ -56,7 +56,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "react-icons": "^4.9.0",
-    "sass": "^1.62.1"
+    "react-icons": "^4.9.0"
   }
 }
