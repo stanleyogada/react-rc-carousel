@@ -179,8 +179,8 @@ const Example = () => {
         renderPrev: (onClick) => <button onClick={onClick}>Previous</button>,
       }}
       theme={{
-        color: "#FFFFFF",
-        backgroundColor: "#333333",
+        color: "#222",
+        backgroundColor: "#aaa",
       }}
       breakpoints={[
         { width: 500, nSlidePerView: 1 },
@@ -212,13 +212,15 @@ const Example = () => {
   return (
     <>
       <SliderThemeProvider
-        nSlidePerView={2}
-        animationInterval={3000}
-        isPauseOnHover={true}
-        isAutoSlide={true}
-        isShowDots={{
-          position: "bottom-center",
-          isOut: true,
+       props={{
+          nSlidePerView: 2,
+          animationInterval: 3000,
+          isPauseOnHover: true,
+          isAutoSlide: true,
+          isShowDots: {
+            position: "bottom-center",
+            isOut: true,
+          }
         }}
         {/* Add as many props as you like */}
       >
@@ -230,13 +232,22 @@ const Example = () => {
       </SliderThemeProvider>
 
       <SliderThemeProvider
-        isShowDots={{
-          position: "bottom-center",
-          isOut: true,
+       props={{
+          isShowDots: {
+            position: "top-center",
+            isOut: false,
+          }
+          theme: {
+            backgroundColor: "red",
+            color: "yellow",
+          }
         }}
         {/* Add as many props as you like */}
       >
-        <Slider>
+        <Slider theme={{
+            backgroundColor: "#aaa",
+            color: "#222",
+          }}>
           <div>Slide 1</div>
           <div>Slide 2</div>
           <div>Slide 3</div>
