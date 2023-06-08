@@ -140,12 +140,19 @@ The **_Slider_** component accepts the following props:
 
 ```javascript
 import { Slider } from "react-rc-carousel";
+import "react-rc-carousel/styles.css";
 
-const MyComponent = () => {
-  return <Slider>{/_ Add your slides here _/}</Slider>;
+const Example = () => {
+  return (
+    <Slider>
+      <div>Slide 1</div>
+      <div>Slide 2</div>
+      <div>Slide 3</div>
+    </Slider>
+  );
 };
 
-export default MyComponent;
+export default Example;
 ```
 
 #### Advance Usage
