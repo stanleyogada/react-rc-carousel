@@ -167,12 +167,9 @@ export const Primary: Story = {
       isOut: true,
     },
     isShowButtons: {
-      position: "bottom-left",
+      // position: "bottom-left",
       isRounded: true,
       spaced: true,
-      renderNext: (onClick) => {
-        return <button onClick={onClick}>next</button>;
-      },
     },
     changeSlideAnimation: {
       isSlide: true,

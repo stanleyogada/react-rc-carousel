@@ -1,18 +1,10 @@
-import {
-  ReactElement,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
 import { SLIDER_INITIAL_PROPS } from "src/constants";
 import useSliderThemeProvider from "src/contexts/useSliderThemeProvider";
 
-import type { SliderProps, SlideAnimationProp } from "src/types";
+import type { SliderProps, SlideAnimationProp, BreakPoint } from "src/types";
 
 const theme = {
   color: "#ff7f7f",
@@ -32,21 +24,61 @@ export const Slider = (props: SliderProps) => {
       <div>slide 5</div>,
     ],
     isAutoSlide,
-    nSlidePerView,
+    nSlidePerView: __nSlidePerView,
     animationInterval,
     lastSlideAnimation,
     changeSlideAnimation,
     isPauseOnHover,
     isShowDots,
     isShowButtons,
+    breakpoints,
   } = { ...SLIDER_INITIAL_PROPS, ...props };
+
+  const [nSlidePerView, setNSlidePerView] = useState<number | undefined>(
+    __nSlidePerView
+  );
+
+  useEffect(() => {
+    if (breakpoints) {
+      setNSlidePerView(breakpoints[breakpoints.length - 1].nSlidePerView);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (breakpoints) {
+      const handleResize = () => {
+        let current: BreakPoint | undefined = undefined;
+        console.log(innerWidth <= breakpoints[0].width);
+        for (let i = 0; i < breakpoints.length; i++) {
+          if (innerWidth <= breakpoints[i].width) {
+            current = breakpoints[i];
+            break;
+          }
+        }
+        if (current) setNSlidePerView(current?.nSlidePerView);
+      };
+      handleResize();
+      addEventListener("resize", handleResize);
+      return () => {
+        removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(nSlidePerView, breakpoints, innerWidth);
+  }, [nSlidePerView]);
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
   // @ts-ignore
-  const getNSlide = () => children.length - (nSlidePerView - 1); // @ts-ignore
-  const shouldAnimate = useMemo(() => nSlidePerView < children.length, []);
+  const getNSlide = () => children.length - (nSlidePerView - 1);
+  const shouldAnimate = useMemo(
+    // @ts-ignore
+    () => nSlidePerView < children.length,
+    [nSlidePerView]
+  );
 
   const handleFadeAnimation = () => {
     const container = sliderRef.current;
@@ -136,12 +168,11 @@ export const Slider = (props: SliderProps) => {
     container?.querySelectorAll(".slider__slide").forEach((slide) => {
       // @ts-ignore
       const CSSWidth = 100 / nSlidePerView;
-      console.log(CSSWidth);
 
       // @ts-ignore
       slide.style.width = `${CSSWidth}%`;
     });
-  }, []);
+  }, [nSlidePerView]);
 
   useEffect(() => {
     if (isAutoSlide) {
@@ -191,7 +222,7 @@ export const Slider = (props: SliderProps) => {
     []
   );
 
-  const isShowButtonsProp = useMemo(
+  const TIsShowButtonsProp = useMemo(
     () => ({
       ...SLIDER_INITIAL_PROPS.isShowButtons,
       ...isShowButtons,
@@ -206,12 +237,12 @@ export const Slider = (props: SliderProps) => {
       return className;
     }
 
-    className += ` slider__buttons--${isShowButtonsProp.position}`;
+    className += ` slider__buttons--${TIsShowButtonsProp.position}`;
 
-    if (isShowButtonsProp.spaced) {
+    if (TIsShowButtonsProp.spaced) {
       className += " slider__buttons--space-between";
     }
-    if (isShowButtonsProp.isRounded) {
+    if (TIsShowButtonsProp.isRounded) {
       className += " slider__buttons--rounded";
     }
 
@@ -241,8 +272,8 @@ export const Slider = (props: SliderProps) => {
       {shouldAnimate && (
         <>
           <div className={buttonsClassName}>
-            {isShowButtonsProp.renderPrev ? (
-              isShowButtonsProp.renderPrev(handlePrevButtonClick)
+            {TIsShowButtonsProp.renderPrev ? (
+              TIsShowButtonsProp.renderPrev(handlePrevButtonClick)
             ) : (
               <button
                 className="slider__button slider__button--prev"
@@ -253,8 +284,8 @@ export const Slider = (props: SliderProps) => {
               </button>
             )}
 
-            {isShowButtonsProp.renderNext ? (
-              isShowButtonsProp.renderNext(handleNextButtonClick)
+            {TIsShowButtonsProp.renderNext ? (
+              TIsShowButtonsProp.renderNext(handleNextButtonClick)
             ) : (
               <button
                 className="slider__button slider__button--next"

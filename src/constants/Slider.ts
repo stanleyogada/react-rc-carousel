@@ -24,6 +24,7 @@ const SLIDER_INITIAL_PROPS: SliderProps = {
     renderNext: undefined,
     renderPrev: undefined,
   },
+  breakpoints: undefined,
 };
 
 export default SLIDER_INITIAL_PROPS;

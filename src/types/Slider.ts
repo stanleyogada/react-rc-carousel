@@ -5,12 +5,22 @@ type SlideAnimationProp = {
   isFade?: boolean;
 };
 
-type isShowButtonsProp = {
+type TIsShowButtonsProp = {
   position?: "bottom-left" | "bottom-right" | "middle-center";
   isRounded?: boolean;
   spaced?: boolean;
   renderNext?: (onClick: () => void) => ReactElement;
   renderPrev?: (onClick: () => void) => ReactElement;
+};
+
+type TIsShowButtons = {
+  position?: "top-center" | "bottom-center";
+  isOut?: boolean;
+};
+
+type BreakPoint = {
+  width: number;
+  nSlidePerView: number;
 };
 
 type SliderProps = {
@@ -21,14 +31,9 @@ type SliderProps = {
   lastSlideAnimation?: SlideAnimationProp;
   changeSlideAnimation?: SlideAnimationProp;
   isPauseOnHover?: boolean;
-  isShowDots?:
-    | {
-        position?: "top-center" | "bottom-center";
-        isOut?: boolean;
-      }
-    | false;
-
-  isShowButtons?: isShowButtonsProp | false;
+  isShowDots?: TIsShowButtons | false;
+  isShowButtons?: TIsShowButtonsProp | false;
+  breakpoints?: BreakPoint[];
 };
 
-export type { SliderProps, isShowButtonsProp, SlideAnimationProp };
+export type { SliderProps, TIsShowButtonsProp, SlideAnimationProp, BreakPoint };

@@ -15,6 +15,12 @@ function App() {
         props={{
           nSlidePerView: 1,
           isShowDots: false,
+          breakpoints: [
+            { width: 391, nSlidePerView: 1 },
+            { width: 592, nSlidePerView: 2 },
+            { width: 830, nSlidePerView: 3 },
+            { width: 920, nSlidePerView: 4 },
+          ],
         }}
       >
         <Products heading="Top Products" />
@@ -26,11 +32,22 @@ function App() {
         props={{
           nSlidePerView: 2,
           isAutoSlide: false,
+          breakpoints: [
+            { width: 391, nSlidePerView: 1 },
+            { width: 592, nSlidePerView: 2 },
+            { width: 830, nSlidePerView: 3 },
+            { width: 920, nSlidePerView: 4 },
+          ],
         }}
       >
         <Products heading="Featured Products" />
         <Products heading="Deals For June" />
       </SliderThemeProvider>
+
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }

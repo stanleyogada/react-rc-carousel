@@ -42,11 +42,7 @@ const Hero = () => {
       changeSlideAnimation={{
         isSlide: true,
       }}
-      // isShowButtons={{
-      //   position: "bottom-left",
-      //   isRounded: false,
-      //   spaced: false,
-      // }}
+      nSlidePerView={1}
     >
       <div style={heroStyle}>
         <div style={imageContainerStyle}>
