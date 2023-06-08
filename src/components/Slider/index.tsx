@@ -120,7 +120,10 @@ export const Slider = (props: SliderProps) => {
         //@ts-ignore
         slide.style.transform = `translateX(${CSSTranslateX})`;
 
-        if (hasReachLastSlide) {
+        const shouldRestartSlide =
+          hasReachLastSlide && getNSlide() > 2 && nextSlide === getNSlide();
+
+        if (shouldRestartSlide) {
           // @ts-ignore
           handleSlideAnimation(lastSlideAnimation, ".5s ease", slide);
         } else {
@@ -271,23 +274,25 @@ export const Slider = (props: SliderProps) => {
     currentSlide > 0 && handleControlClick(currentSlide - 1);
   };
 
-  // SWIPING
-
   const { sliderMainRef } = useSwipe({
     onLeft: handleNextButtonClick,
     onRight: handlePrevButtonClick,
     currentSlide,
   });
 
+  const shouldPauseWhenSliderIhHovered = useMemo(
+    () =>
+      innerWidth > MOBILE_SCREEN && isPauseOnHover
+        ? handlePauseAnimation
+        : undefined,
+    [innerWidth, isPauseOnHover]
+  );
+
   return (
     <div
       className={`slider`}
       ref={sliderMainRef}
-      onMouseOver={
-        innerWidth > MOBILE_SCREEN && isPauseOnHover
-          ? handlePauseAnimation
-          : undefined
-      }
+      onMouseOver={shouldPauseWhenSliderIhHovered}
       onMouseLeave={
         isPauseOnHover && isAutoSlide ? handleStartAnimation : undefined
       }
