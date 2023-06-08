@@ -25,6 +25,10 @@ const SLIDER_INITIAL_PROPS: SliderProps = {
     renderPrev: undefined,
   },
   breakpoints: undefined,
+  theme: {
+    color: "#000",
+    backgroundColor: "#bbb",
+  },
 };
 
 export default SLIDER_INITIAL_PROPS;

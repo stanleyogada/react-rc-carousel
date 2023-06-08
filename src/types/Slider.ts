@@ -23,6 +23,11 @@ type BreakPoint = {
   nSlidePerView: number;
 };
 
+type Theme = {
+  color: string;
+  backgroundColor: string;
+};
+
 type SliderProps = {
   children?: ReactElement[];
   isAutoSlide?: boolean;
@@ -34,6 +39,7 @@ type SliderProps = {
   isShowDots?: TIsShowButtons | false;
   isShowButtons?: TIsShowButtonsProp | false;
   breakpoints?: BreakPoint[];
+  theme?: Theme;
 };
 
 export type { SliderProps, TIsShowButtonsProp, SlideAnimationProp, BreakPoint };

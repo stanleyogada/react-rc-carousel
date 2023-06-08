@@ -6,11 +6,6 @@ import useSliderThemeProvider from "src/contexts/useSliderThemeProvider";
 
 import type { SliderProps, SlideAnimationProp, BreakPoint } from "src/types";
 
-const theme = {
-  color: "#ff7f7f",
-  backgroundColor: "#000",
-};
-
 export const Slider = (props: SliderProps) => {
   const contextProps = useSliderThemeProvider();
   props = { ...(contextProps || {}), ...props };
@@ -32,6 +27,7 @@ export const Slider = (props: SliderProps) => {
     isShowDots,
     isShowButtons,
     breakpoints,
+    theme,
   } = { ...SLIDER_INITIAL_PROPS, ...props };
 
   const [nSlidePerView, setNSlidePerView] = useState<number | undefined>(
