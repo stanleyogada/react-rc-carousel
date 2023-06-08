@@ -1,12 +1,12 @@
 {
   "name": "react-rc-carousel",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/react-rc.cjs",
-      "import": "./dist/react-rc.es.js"
+      "require": "./dist/react-rc-carousel.cjs",
+      "import": "./dist/react-rc-carousel.es.js"
     },
     "./styles.css": {
       "require": "./dist/styles.css",

@@ -17,9 +17,10 @@ export default defineConfig(() => ({
   build: {
     lib: {
       entry: resolve("src", "index.ts"),
-      name: "react-rc",
+      name: "react-rc-carousel",
       formats: ["es", "cjs"],
-      fileName: (format) => `react-rc.${format === "cjs" ? "cjs" : "es.js"}`,
+      fileName: (format) =>
+        `react-rc-carousel.${format === "cjs" ? "cjs" : "es.js"}`,
     },
     optimizeDeps: {
       exclude: Object.keys(packageJson.peerDependencies),
