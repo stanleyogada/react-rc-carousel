@@ -190,14 +190,14 @@ export const Slider = (props: SliderProps) => {
 
     if (container) {
       container?.querySelectorAll(".slider__dot").forEach((dot) => {
-        (dot as HTMLButtonElement).style.backgroundColor =
+        (dot as HTMLButtonElement).style.backgroundColor = //@ts-ignore
           theme.backgroundColor;
       });
 
       const dotActive: HTMLButtonElement = container.querySelector(
         ".slider__dot--active"
       ) as HTMLButtonElement;
-
+      //@ts-ignore
       dotActive.style.backgroundColor = theme.color;
     }
   }, [currentSlide]);
@@ -230,7 +230,8 @@ export const Slider = (props: SliderProps) => {
 
   const buttonStyle = useMemo(
     () => ({
-      color: theme.color,
+      // @ts-ignore
+      color: theme.color, // @ts-ignore
       backgroundColor: theme.backgroundColor,
     }),
     []
