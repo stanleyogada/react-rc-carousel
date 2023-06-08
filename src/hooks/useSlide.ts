@@ -106,8 +106,6 @@ const useSlide = ({
 
   const handleStartAnimation = () => {
     if (shouldAnimate) {
-      console.log("Is animating", sliderRef.current);
-
       sliderAnimationIntervalId.current = setInterval(
         handleSlideChange,
         animationInterval
