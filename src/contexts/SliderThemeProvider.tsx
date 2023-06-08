@@ -1,8 +1,8 @@
 import { ReactElement, createContext, useMemo } from "react";
 import { SLIDER_INITIAL_PROPS } from "src/constants";
-import { SliderProps } from "src/types";
+import { ISliderProps } from "src/types";
 
-type Props = Omit<SliderProps, "children">;
+type Props = Omit<ISliderProps, "children">;
 
 const SliderThemeContext = createContext<Props>(SLIDER_INITIAL_PROPS);
 

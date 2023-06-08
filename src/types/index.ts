@@ -1,8 +1,13 @@
 import type {
-  SliderProps,
+  ISliderProps,
   TIsShowButtonsProp,
   SlideAnimationProp,
-  BreakPoint,
+  TBreakPoint,
 } from "./Slider";
 
-export type { SliderProps, TIsShowButtonsProp, SlideAnimationProp, BreakPoint };
+export type {
+  ISliderProps,
+  TIsShowButtonsProp,
+  SlideAnimationProp,
+  TBreakPoint,
+};

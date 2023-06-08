@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { SlideAnimationProp, SliderProps } from "src/types";
+import { SlideAnimationProp, ISliderProps } from "src/types";
 
 const useSlide = ({
   getNSlide,
@@ -15,8 +15,8 @@ const useSlide = ({
   getNSlide: () => number;
   shouldAnimate: boolean;
   sliderRef: React.RefObject<HTMLDivElement>;
-  nSlidePerView: SliderProps["nSlidePerView"];
-  isAutoSlide: SliderProps["isAutoSlide"];
+  nSlidePerView: ISliderProps["nSlidePerView"];
+  isAutoSlide: ISliderProps["isAutoSlide"];
   animationInterval: number;
   lastSlideAnimation: SlideAnimationProp;
   changeSlideAnimation: SlideAnimationProp;

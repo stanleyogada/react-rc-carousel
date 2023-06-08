@@ -11,7 +11,7 @@ import {
   useSwipe,
 } from "src/hooks";
 
-import type { SliderProps, SlideAnimationProp, BreakPoint } from "src/types";
+import type { ISliderProps, SlideAnimationProp, TBreakPoint } from "src/types";
 
 const MOBILE_SCREEN = 400;
 
@@ -23,7 +23,7 @@ const DEFAULT_CHILDREN = [
   <div>slide 5</div>,
 ];
 
-export const Slider = (props: SliderProps) => {
+export const Slider = (props: ISliderProps) => {
   const contextProps = useSliderThemeProvider();
   props = { ...(contextProps || {}), ...props };
   const {
@@ -79,9 +79,9 @@ export const Slider = (props: SliderProps) => {
     handlePrevButtonClick,
   } = useControls({
     currentSlide,
-    isShowDots: isShowDots as SliderProps["isShowDots"],
-    isShowButtons: isShowButtons as SliderProps["isShowButtons"],
-    theme: theme as SliderProps["theme"],
+    isShowDots: isShowDots as ISliderProps["isShowDots"],
+    isShowButtons: isShowButtons as ISliderProps["isShowButtons"],
+    theme: theme as ISliderProps["theme"],
     handleControlClick,
   });
 

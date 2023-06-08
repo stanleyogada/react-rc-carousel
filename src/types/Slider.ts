@@ -18,17 +18,17 @@ type TIsShowButtons = {
   isOut?: boolean;
 };
 
-type BreakPoint = {
+type TBreakPoint = {
   width: number;
   nSlidePerView: number;
 };
 
-type Theme = {
+type TTheme = {
   color: string;
   backgroundColor: string;
 };
 
-type SliderProps = {
+interface ISliderProps {
   children?: ReactElement[];
   isAutoSlide?: boolean;
   nSlidePerView?: number;
@@ -38,8 +38,13 @@ type SliderProps = {
   isPauseOnHover?: boolean;
   isShowDots?: TIsShowButtons | false;
   isShowButtons?: TIsShowButtonsProp | false;
-  breakpoints?: BreakPoint[];
-  theme?: Theme;
-};
+  breakpoints?: TBreakPoint[];
+  theme?: TTheme;
+}
 
-export type { SliderProps, TIsShowButtonsProp, SlideAnimationProp, BreakPoint };
+export type {
+  ISliderProps,
+  TIsShowButtonsProp,
+  SlideAnimationProp,
+  TBreakPoint,
+};

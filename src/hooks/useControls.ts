@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 
 import { SLIDER_INITIAL_PROPS } from "src/constants";
-import { SliderProps } from "src/types";
+import { ISliderProps } from "src/types";
 
 const useControls = ({
   currentSlide,
@@ -11,9 +11,9 @@ const useControls = ({
   handleControlClick,
 }: {
   currentSlide: number;
-  isShowDots: SliderProps["isShowDots"];
-  isShowButtons: SliderProps["isShowButtons"];
-  theme: SliderProps["theme"];
+  isShowDots: ISliderProps["isShowDots"];
+  isShowButtons: ISliderProps["isShowButtons"];
+  theme: ISliderProps["theme"];
   handleControlClick: (currentSlide: number) => void;
 }) => {
   const dotsRef = useRef<HTMLDivElement | null>(null);

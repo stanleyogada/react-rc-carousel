@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { BreakPoint, SliderProps } from "src/types";
+import { TBreakPoint, ISliderProps } from "src/types";
 
 const useBreakpoints = (
-  __nSlidePerView: SliderProps["nSlidePerView"],
-  breakpoints: SliderProps["breakpoints"]
+  __nSlidePerView: ISliderProps["nSlidePerView"],
+  breakpoints: ISliderProps["breakpoints"]
 ) => {
   const [nSlidePerView, setNSlidePerView] = useState(__nSlidePerView);
 
@@ -17,7 +17,7 @@ const useBreakpoints = (
   useEffect(() => {
     if (breakpoints) {
       const handleResize = () => {
-        let current: BreakPoint | undefined = undefined;
+        let current: TBreakPoint | undefined = undefined;
 
         for (let i = 0; i < breakpoints.length; i++) {
           if (innerWidth <= breakpoints[i].width) {

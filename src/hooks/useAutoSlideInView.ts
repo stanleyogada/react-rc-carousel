@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import type { SliderProps } from "src/types";
+import type { ISliderProps } from "src/types";
 
 const OBSERVER_OPTIONS = {
   root: null, // Use the viewport as the root element
@@ -8,7 +8,7 @@ const OBSERVER_OPTIONS = {
   threshold: 0.2, // Trigger the callback when the slider is out of view
 };
 
-const useAutoSlideInView = (__isAutoSlide: SliderProps["isAutoSlide"]) => {
+const useAutoSlideInView = (__isAutoSlide: ISliderProps["isAutoSlide"]) => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const [isAutoSlide, setIsAutoSlide] = useState(__isAutoSlide);

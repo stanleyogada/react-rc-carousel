@@ -1,6 +1,6 @@
-import { SliderProps } from "src/types";
+import { ISliderProps } from "src/types";
 
-const SLIDER_INITIAL_PROPS: SliderProps = {
+const SLIDER_INITIAL_PROPS: ISliderProps = {
   isAutoSlide: true,
   nSlidePerView: 1,
   animationInterval: 5000,
