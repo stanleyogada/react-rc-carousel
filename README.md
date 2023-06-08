@@ -68,27 +68,60 @@ Props
 
 The **_Slider_** component accepts the following props:
 
-- **_children_** -- (`React.Element[]`): Is used to define the slides within the **_Slider_** component. This approach allows for dynamic and flexible creation of slides within the **_Slider_** component, giving you control over the displayed content.
+- children:
+  -- Description: Is used to define the slides within the Slider component. This approach allows for dynamic and flexible creation of slides within the Slider component, giving you control over the displayed content.
+  -- Type: `React.Element[]`
+  -- Default Value: `5 DIV elements`
 
-- **_nSlidePerView_** -- (`Number`): Indicates how many slides to display per view.
+- nSlidePerView:
+  -- Description: Indicates how many slides to display per view.
+  -- Type: `Number`
+  -- Default Value: `1`
 
-- **_animationInterval_** -- (`Number`): Indicates the interval in milliseconds for the animation between slides.
+- animationInterval:
+  -- Description: Indicates the interval in milliseconds for the animation slides.
+  -- Type: `Number`
+  -- Default Value: `5000`
 
-- **_isPauseOnHover_** -- (`Boolean`): Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
+- isPauseOnHover:
+  -- Description: Pauses the animation when hovering on the slider component. Useful for Hero slideshows.
+  -- Type: `Boolean`
+  -- Default Value: `true`
 
-- **_isAutoSlide_** -- (`Boolean`): Automatically starts the sliding animation without any controls click.
+- isAutoSlide:
+  -- Description: Automatically starts the sliding animation without any controls click.
+  -- Type: `Boolean`
+  -- Default Value: `true`
 
-- **_isShowDots_** -- (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string }`): Determines the visibility and position of the control dots. Use `{ position: "bottom-center", isOut: true }` to visually place the control dots outside the **_Slider_** component.
+- isShowDots:
+  -- Description: 'false' means the control will be hidden. 'isOut' in the object means the control will be visually placed outside the Slider component.
+  -- Type: `{ position?: 'bottom-center' | 'top-center', isOut?: boolean | string }`
+  -- Default Value: `{ position: 'bottom-center', isOut: true }`
 
-- **_isShowButtons_** -- (`{ position?: "bottom-center" | "top-center", isOut?: boolean | string, renderNext?: Function, renderPrev?: Function }`): Controls the visibility, position, and appearance of control buttons for navigating between slides. Set `'false'` to hide the buttons or specify the position. You can also provide custom button rendering functions using `renderNext` and `renderPrev`.
+- isShowButtons:
+  -- Description: 'false' means the control will be hidden. 'position' in the object can either be 'middle-center', 'bottom-left', or 'bottom-right'. 'renderNext' and 'renderPrev' are functions (which take an 'onClick' function) that can be used to render custom buttons.
+  -- Type: `{ position?: 'bottom-center' | 'top-center', isOut?: boolean | string }`
+  -- Default Value: `{ position: 'bottom-center', isOut: true }`
 
-- **_lastSlideAnimation_** -- (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that controls the animation for the LAST slide. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- theme:
+  -- Description: The theme object typically includes properties such as 'backgroundColor' and 'color', allowing you to specify the desired background color and text color, respectively.
+  -- Type: `{ color: string, backgroundColor: string }`
+  -- Default Value: `{ color: '#000', backgroundColor: '#bbb' }`
 
-- **_changeSlideAnimation_** -- (`{ isFade?: boolean, isSlide?: boolean | string }`): A property that determines the animation for CHANGING SLIDES. Set `isFade` to `true` to enable a fade animation effect. Set `isSlide` to `true` or provide a custom CSS transition duration to enable a sliding animation effect.
+- breakpoints:
+  -- Description: NOTE: 'width' must be in ascending order from smallest to largest. They are typically used in responsive design to ensure that content is displayed appropriately across different devices and screen sizes.
+  -- Type: `{ width?: number, nSlidePerView: number }[]`
+  -- Default Value: `undefined`
 
-- **_theme_** -- (`{ color: string, backgroundColor: string }`): The theme object typically includes properties such as `color` and `backgroundColor`, allowing you to specify the desired background color and text color, respectively.
+- lastSlideAnimation:
+  -- Description: A property that controls the animation for the LAST slide. It accepts an optional 'SlideAnimation' type, which can have the 'isSlide' and 'isFade' properties to enable specific animation effects.
+  -- Type: `{ isFade?: boolean, isSlide?: boolean | string }`
+  -- Default Value: `{ isSlide: false, isFade: true }`
 
-- **_breakpoints_** -- (`{ width?: number, nSlidePerView: number }`[]): Specifies the breakpoints for responsive design. You can define different numbers of slides per view based on the screen width.
+- changeSlideAnimation:
+  -- Description: A property that determines the animation for CHANGING SLIDES. It also accepts an optional 'SlideAnimation' type, allowing you to specify the desired animation effect using the 'isSlide' and 'isFade' properties.
+  -- Type: `{ isFade?: boolean, isSlide?: boolean | string }`
+  -- Default Value: `{ isFade: false, isSlide: '1s ease' }`
 
 ## Examples
 
