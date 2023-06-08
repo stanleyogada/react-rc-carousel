@@ -1,0 +1,6 @@
+th:last-child {
+  display: none;
+}
+td:last-child {
+  display: none;
+}

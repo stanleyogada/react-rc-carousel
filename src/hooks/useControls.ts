@@ -32,7 +32,7 @@ const useControls = ({
       //@ts-ignore
       dotActive.style.backgroundColor = theme.color;
     }
-  }, [currentSlide]);
+  }, [currentSlide, theme?.backgroundColor, theme?.color]);
 
   const dotsStyle = useMemo(() => {
     if (isShowDots === false)
@@ -61,7 +61,7 @@ const useControls = ({
       color: theme?.color,
       backgroundColor: theme?.backgroundColor,
     }),
-    []
+    [theme?.backgroundColor, theme?.color]
   );
 
   const isShowButtonsPropValue = useMemo(
