@@ -1,6 +1,5 @@
 import Hero from "./Hero";
 import Products from "./Products";
-import "./App.scss";
 import { SliderThemeProvider } from "./contexts";
 
 function App() {
