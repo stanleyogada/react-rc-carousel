@@ -9,33 +9,48 @@ import type { SliderProps, SlideAnimationProp, BreakPoint } from "src/types";
 
 const MOBILE_SCREEN = 400;
 
-export const Slider = (props: SliderProps) => {
-  const contextProps = useSliderThemeProvider();
-  props = { ...(contextProps || {}), ...props };
+const observerOptions = {
+  root: null, // Use the viewport as the root element
+  rootMargin: "0px", // No additional margin
+  threshold: 0.2, // Trigger the callback when the slider is out of view
+};
+const useAutoSlideInView = (__isAutoSlide: SliderProps["isAutoSlide"]) => {
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-  const {
-    children = [
-      <div>slide 1</div>,
-      <div>slide 2</div>,
-      <div>slide 3</div>,
-      <div>slide 4</div>,
-      <div>slide 5</div>,
-    ],
-    isAutoSlide,
-    nSlidePerView: __nSlidePerView,
-    animationInterval,
-    lastSlideAnimation,
-    changeSlideAnimation,
-    isPauseOnHover,
-    isShowDots,
-    isShowButtons,
-    breakpoints,
-    theme,
-  } = { ...SLIDER_INITIAL_PROPS, ...props };
+  const [isAutoSlide, setIsAutoSlide] = useState(__isAutoSlide);
 
-  const [nSlidePerView, setNSlidePerView] = useState<number | undefined>(
-    __nSlidePerView
-  );
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsAutoSlide(true);
+        } else {
+          setIsAutoSlide(false);
+        }
+      });
+    }, observerOptions);
+
+    // Start observing the slider element
+    if (sliderRef.current) {
+      observer.observe(sliderRef.current);
+    }
+
+    // Cleanup the observer
+    return () => {
+      if (sliderRef.current) {
+        observer.unobserve(sliderRef.current);
+      }
+    };
+  }, []);
+
+  return { isAutoSlide, sliderRef };
+};
+
+const useBreakpoints = (
+  __nSlidePerView: SliderProps["nSlidePerView"],
+  breakpoints: SliderProps["breakpoints"]
+) => {
+  const [nSlidePerView, setNSlidePerView] = useState(__nSlidePerView);
 
   useEffect(() => {
     if (breakpoints) {
@@ -64,10 +79,39 @@ export const Slider = (props: SliderProps) => {
     }
   }, []);
 
+  return nSlidePerView;
+};
+
+export const Slider = (props: SliderProps) => {
+  const contextProps = useSliderThemeProvider();
+  props = { ...(contextProps || {}), ...props };
+
+  const {
+    children = [
+      <div>slide 1</div>,
+      <div>slide 2</div>,
+      <div>slide 3</div>,
+      <div>slide 4</div>,
+      <div>slide 5</div>,
+    ],
+    isAutoSlide: __isAutoSlide,
+    nSlidePerView: __nSlidePerView,
+    animationInterval,
+    lastSlideAnimation,
+    changeSlideAnimation,
+    isPauseOnHover,
+    isShowDots,
+    isShowButtons,
+    breakpoints,
+    theme,
+  } = { ...SLIDER_INITIAL_PROPS, ...props };
+
+  const { isAutoSlide, sliderRef } = useAutoSlideInView(__isAutoSlide);
+  const nSlidePerView = useBreakpoints(__nSlidePerView, breakpoints);
+
   // useEffect(() => {
   // }, [nSlidePerView]);
 
-  const sliderRef = useRef<HTMLDivElement>(null);
   const sliderAnimationInterval = useRef<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   // @ts-ignore
@@ -154,6 +198,8 @@ export const Slider = (props: SliderProps) => {
 
   const handleStartAnimation = () => {
     if (shouldAnimate) {
+      console.log("Is animating", sliderRef.current);
+
       sliderAnimationInterval.current = setInterval(
         handleSlideChange,
         animationInterval

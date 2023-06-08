@@ -7,11 +7,13 @@ function App() {
   return (
     <>
       <Hero />
-
+      <br />
+      <br />
+      <Hero />
       <br />
       <br />
 
-      {/* <SliderThemeProvider
+      <SliderThemeProvider
         props={{
           nSlidePerView: 1,
           // isShowDots: false,
@@ -46,7 +48,7 @@ function App() {
       >
         <Products heading="Featured Products" />
         <Products heading="Deals For June" />
-      </SliderThemeProvider> */}
+      </SliderThemeProvider>
 
       <br />
       <br />
