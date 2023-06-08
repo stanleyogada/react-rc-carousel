@@ -204,7 +204,7 @@ export const Slider = (props: SliderProps) => {
 
       dotActive.style.backgroundColor = theme.color;
     }
-  }, []);
+  }, [currentSlide]);
 
   const dotsStyle = useMemo(() => {
     if (isShowDots === false)

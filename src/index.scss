@@ -56,12 +56,10 @@
       width: 10px;
       height: 10px;
       border-radius: 10px;
-      // background-color: #9e8585;
       cursor: pointer;
       transition: 1s ease;
 
       &--active {
-        background-color: #000;
         width: 30px;
       }
     }
