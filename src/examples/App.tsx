@@ -1,6 +1,6 @@
 import Hero from "./Hero";
 import Products from "./Products";
-import { SliderThemeProvider } from "./contexts";
+import { SliderThemeProvider } from "../contexts";
 
 function App() {
   return (

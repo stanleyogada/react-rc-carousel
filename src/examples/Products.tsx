@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { Slider } from "./components/Slider";
+import { Slider } from "../components/Slider";
 
 const Products = ({ heading }: { heading: string }) => {
   const cardStyle: CSSProperties = {
