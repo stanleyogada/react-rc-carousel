@@ -70,6 +70,8 @@ Props
 
 The **_Slider_** component accepts the following props:
 
+![Documentation Table](./docs.png)
+
 - **children**:
 
   - **_Description_**: Is used to define the slides within the Slider component. This approach allows for dynamic and flexible creation of slides within the Slider component, giving you control over the displayed content.
