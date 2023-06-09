@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { TBreakPoint, ISliderProps } from "src/types";
+import { TBreakPoint, ISliderProps } from "../types";
 
 const useBreakpoints = (
   __nSlidePerView: ISliderProps["nSlidePerView"],

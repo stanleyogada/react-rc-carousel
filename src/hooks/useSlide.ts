@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { SlideAnimationProp, ISliderProps } from "src/types";
+import { SlideAnimationProp, ISliderProps } from "../types";
 
 const useSlide = ({
   getNSlide,

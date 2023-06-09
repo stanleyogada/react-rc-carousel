@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import type { ISliderProps } from "src/types";
+import type { ISliderProps } from "../types";
 
 const OBSERVER_OPTIONS = {
   root: null, // Use the viewport as the root element
