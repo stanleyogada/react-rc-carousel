@@ -1,6 +1,6 @@
 {
   "name": "react-rc-carousel",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -34,8 +34,8 @@
   "scripts": {
     "dev": "vite",
     "build": "yarn build:esm && yarn build:cjs",
-    "build:esm": "tsc -w --copy-files",
-    "build:cjs": "tsc -w --copy-files --module commonjs --outDir dist/cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "storybook": "concurrently \"npm run storybook:css\" \"storybook dev -p 6006\"",
     "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/index.css",
     "build-storybook": "concurrently \"npm run build-storybook:css\" \"storybook build\"",
