@@ -55,7 +55,6 @@ npm install react-rc-carousel
 
 ```javascript
 import { Slider } from "react-rc-carousel";
-import "react-rc-carousel/styles.css";
 
 const MyComponent = () => {
   return <Slider />;
@@ -144,7 +143,6 @@ The **_Slider_** component accepts the following props:
 
 ```javascript
 import { Slider } from "react-rc-carousel";
-import "react-rc-carousel/styles.css";
 
 const Example = () => {
   return (
@@ -163,7 +161,6 @@ export default Example;
 
 ```javascript
 import { Slider } from "react-rc-carousel";
-import "react-rc-carousel/styles.css";
 
 const Example = () => {
   return (
@@ -217,7 +214,6 @@ export default Example;
 
 ```javascript
 import { SliderThemeProvider, Slider } from "react-rc-carousel";
-import "react-rc-carousel/styles.css";
 
 const Example = () => {
   return (
