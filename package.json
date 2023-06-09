@@ -1,6 +1,7 @@
 {
   "name": "react-rc-carousel",
-  "version": "4.0.3",
+  "description": "A React carousel component with very easy-to-use API for creating dynamic and flexible slideshows.",
+  "version": "4.0.4",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
