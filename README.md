@@ -57,7 +57,14 @@ npm install react-rc-carousel
 import { Slider } from "react-rc-carousel";
 
 const MyComponent = () => {
-  return <Slider />;
+  return (
+    <Slider nSlidePerView={2} animationInterval={2000}>
+      <div>Slide 1</div>
+      <div>Slide 2</div>
+      <div>Slide 3</div>
+      <div>Slide 4</div>
+    </Slider>
+  );
 };
 
 export default MyComponent;
@@ -73,13 +80,13 @@ The **_Slider_** component accepts the following props:
 
 - **children**:
 
-  - **_Description_**: Is used to define the slides within the Slider component. This approach allows for dynamic and flexible creation of slides within the Slider component, giving you control over the displayed content.
+  - **_Description_**: `NOTE: each child element (slide) should NOT have a 'width' CSS as the Slider controls the 'width' for you.` Is used to define the slides within the Slider component. This approach allows for dynamic and flexible creation of slides within the Slider component, giving you control over the displayed content.
   - **_Type_**: `React.Element[]`
   - **_Default Value_**: `5 DIV elements`
 
 - **nSlidePerView**:
 
-  - **_Description_**: Indicates how many slides to display per view.
+  - **_Description_**: `NOTE: this controls the 'width' of each child element (slide)` Indicates how many slides to display per view.
   - **_Type_**: `Number`
   - **_Default Value_**: `1`
 
@@ -121,7 +128,7 @@ The **_Slider_** component accepts the following props:
 
 - **breakpoints**:
 
-  - **_Description_**: NOTE: 'width' must be in ascending order from smallest to largest. They are typically used in responsive design to ensure that content is displayed appropriately across different devices and screen sizes.
+  - **_Description_**: `NOTE: 'width' must be in ascending order from smallest to largest.` They are typically used in responsive design to ensure that content is displayed appropriately across different devices and screen sizes.
   - **_Type_**: `{ width?: number, nSlidePerView: number }[]`
   - **_Default Value_**: `undefined`
 
@@ -165,13 +172,6 @@ import { Slider } from "react-rc-carousel";
 const Example = () => {
   return (
     <Slider
-      children={[
-        <div>Slide 1</div>,
-        <div>Slide 2</div>,
-        <div>Slide 3</div>,
-        <div>Slide 4</div>,
-        <div>Slide 5</div>,
-      ]}
       nSlidePerView={3}
       animationInterval={3000}
       isPauseOnHover={true}
@@ -203,7 +203,12 @@ const Example = () => {
         isFade: false,
         isSlide: "1s ease",
       }}
-    />
+    >
+      <div>Slide 1</div>
+      <div>Slide 2</div>
+      <div>Slide 3</div>
+      <div>Slide 4</div>
+    </Slider>
   );
 };
 
