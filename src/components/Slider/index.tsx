@@ -1,17 +1,17 @@
 import { useCallback, useMemo } from "react";
 import { IoChevronForward, IoChevronBack } from "react-icons/io5";
 
-import { SLIDER_INITIAL_PROPS } from "src/constants";
-import useSliderThemeProvider from "src/contexts/useSliderThemeProvider";
+import { SLIDER_INITIAL_PROPS } from "../../constants";
+import useSliderThemeProvider from "../../contexts/useSliderThemeProvider";
 import {
   useAutoSlideInView,
   useBreakpoints,
   useControls,
   useSlide,
   useSwipe,
-} from "src/hooks";
+} from "../../hooks";
 
-import type { ISliderProps, SlideAnimationProp } from "src/types";
+import type { ISliderProps, SlideAnimationProp } from "../../types";
 import { keyframes, styled } from "styled-components";
 
 const MOBILE_SCREEN = 400;

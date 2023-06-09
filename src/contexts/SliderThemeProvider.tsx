@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useMemo } from "react";
-import { SLIDER_INITIAL_PROPS } from "src/constants";
-import { ISliderProps } from "src/types";
+import { SLIDER_INITIAL_PROPS } from "../constants";
+import { ISliderProps } from "../types";
 
 type Props = Omit<ISliderProps, "children">;
 
