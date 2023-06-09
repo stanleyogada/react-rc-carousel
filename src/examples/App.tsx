@@ -24,7 +24,7 @@ function App() {
           ],
           theme: {
             backgroundColor: "#ffaaaa",
-            color: "red",
+            // color: "red",
           },
         }}
       >

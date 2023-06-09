@@ -17,22 +17,39 @@ const useControls = ({
   handleControlClick: (currentSlide: number) => void;
 }) => {
   const dotsRef = useRef<HTMLDivElement | null>(null);
+
+  const themePropValue = useMemo(
+    () => ({
+      ...SLIDER_INITIAL_PROPS.theme,
+      ...theme,
+    }),
+    []
+  );
+
   useEffect(() => {
     const container = dotsRef.current;
 
     if (container) {
       container?.querySelectorAll(".slider__dot").forEach((dot) => {
-        (dot as HTMLButtonElement).style.backgroundColor = //@ts-ignore
-          theme.backgroundColor;
+        (dot as HTMLButtonElement).style.backgroundColor =
+          themePropValue.backgroundColor as string;
       });
 
       const dotActive: HTMLButtonElement = container.querySelector(
         ".slider__dot--active"
       ) as HTMLButtonElement;
       //@ts-ignore
-      dotActive.style.backgroundColor = theme.color;
+      dotActive.style.backgroundColor = themePropValue.color;
     }
-  }, [currentSlide, theme?.backgroundColor, theme?.color]);
+  }, [currentSlide, themePropValue?.backgroundColor, themePropValue?.color]);
+
+  const isShowDotsPropValue = useMemo(
+    () => ({
+      ...SLIDER_INITIAL_PROPS.isShowDots,
+      ...isShowDots,
+    }),
+    []
+  );
 
   const dotsStyle = useMemo(() => {
     if (isShowDots === false)
@@ -40,28 +57,32 @@ const useControls = ({
         display: "none",
       };
 
-    if (isShowDots?.position === "top-center") {
+    if (isShowDotsPropValue?.position === "top-center") {
       return {
         top: 0,
         left: "50%",
-        transform: `translate(-50%, ${isShowDots?.isOut ? "-100%" : "0"})`,
+        transform: `translate(-50%, ${
+          isShowDotsPropValue?.isOut ? "-100%" : "0"
+        })`,
       };
     }
-    if (isShowDots?.position === "bottom-center") {
+    if (isShowDotsPropValue?.position === "bottom-center") {
       return {
         bottom: 0,
         left: "50%",
-        transform: `translate(-50%, ${isShowDots?.isOut ? "100%" : "0"})`,
+        transform: `translate(-50%, ${
+          isShowDotsPropValue?.isOut ? "100%" : "0"
+        })`,
       };
     }
   }, []);
 
   const buttonStyle = useMemo(
     () => ({
-      color: theme?.color,
-      backgroundColor: theme?.backgroundColor,
+      color: themePropValue?.color,
+      backgroundColor: themePropValue?.backgroundColor,
     }),
-    [theme?.backgroundColor, theme?.color]
+    [themePropValue?.backgroundColor, themePropValue?.color]
   );
 
   const isShowButtonsPropValue = useMemo(

@@ -163,7 +163,13 @@ export const Slider = (props: ISliderProps) => {
     isShowButtons,
     breakpoints,
     theme,
-  } = useMemo(() => ({ ...SLIDER_INITIAL_PROPS, ...props }), []);
+  } = useMemo(
+    () => ({
+      ...SLIDER_INITIAL_PROPS,
+      ...props,
+    }),
+    []
+  );
 
   const { isAutoSlide, sliderRef } = useAutoSlideInView(__isAutoSlide);
   const nSlidePerView = useBreakpoints(__nSlidePerView, breakpoints);

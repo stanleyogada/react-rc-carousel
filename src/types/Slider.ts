@@ -24,8 +24,8 @@ type TBreakPoint = {
 };
 
 type TTheme = {
-  color: string;
-  backgroundColor: string;
+  color?: string;
+  backgroundColor?: string;
 };
 
 interface ISliderProps {

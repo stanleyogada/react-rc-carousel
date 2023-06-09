@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { SlideAnimationProp, ISliderProps } from "../types";
+import { SLIDER_INITIAL_PROPS } from "../constants";
 
 const useSlide = ({
   getNSlide,
@@ -9,20 +10,35 @@ const useSlide = ({
   nSlidePerView,
   isAutoSlide,
   animationInterval,
-  lastSlideAnimation,
-  changeSlideAnimation,
+  lastSlideAnimation: __lastSlideAnimation,
+  changeSlideAnimation: __changeSlideAnimation,
 }: {
   getNSlide: () => number;
   shouldAnimate: boolean;
   sliderRef: React.RefObject<HTMLDivElement>;
   nSlidePerView: ISliderProps["nSlidePerView"];
   isAutoSlide: ISliderProps["isAutoSlide"];
-  animationInterval: number;
+  animationInterval: ISliderProps["animationInterval"];
   lastSlideAnimation: SlideAnimationProp;
   changeSlideAnimation: SlideAnimationProp;
 }) => {
   const sliderAnimationIntervalId = useRef<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
+
+  const lastSlideAnimation = useMemo(
+    () => ({
+      ...SLIDER_INITIAL_PROPS.lastSlideAnimation,
+      ...__lastSlideAnimation,
+    }),
+    []
+  );
+  const changeSlideAnimation = useMemo(
+    () => ({
+      ...SLIDER_INITIAL_PROPS.changeSlideAnimation,
+      ...__changeSlideAnimation,
+    }),
+    []
+  );
 
   const handleFadeAnimation = () => {
     const container = sliderRef.current;
