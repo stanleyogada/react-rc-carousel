@@ -10,6 +10,8 @@
 
 A React carousel component with very easy-to-use API for creating dynamic and flexible slideshows.
 
+[VIEW LIVE EXAMPLES](https://react-rc-carousel-examples.vercel.app)
+
 ## Table of Contents
 
 - [Features](#features)
