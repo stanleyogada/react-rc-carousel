@@ -1,6 +1,6 @@
 # react-rc-carousel
 
-[![NPM](https://img.shields.io/npm/v/react-rc-carousel.svg)](https://www.npmjs.com/package/react-rc)
+[![NPM](https://img.shields.io/npm/v/react-rc-carousel.svg)](https://www.npmjs.com/package/react-rc-carousel)
 
 #####
 
