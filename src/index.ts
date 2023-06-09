@@ -1,4 +1,6 @@
 import { Slider } from "./components/Slider";
 import { SliderThemeProvider } from "./contexts";
 
-export { Slider, SliderThemeProvider };
+export default Slider;
+
+export { SliderThemeProvider };
