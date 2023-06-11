@@ -30,7 +30,7 @@ const useControls = ({
     const container = dotsRef.current;
 
     if (container) {
-      container?.querySelectorAll(".slider__dot").forEach((dot) => {
+      container.querySelectorAll(".slider__dot").forEach((dot) => {
         (dot as HTMLButtonElement).style.backgroundColor =
           themePropValue.backgroundColor as string;
       });
