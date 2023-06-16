@@ -249,31 +249,33 @@ export const Slider = (props: ISliderProps) => {
 
       {shouldAnimate && (
         <>
-          <div className={buttonsClassName}>
-            {isShowButtonsPropValue.renderPrev ? (
-              isShowButtonsPropValue.renderPrev(handlePrevButtonClick)
-            ) : (
-              <button
-                className="slider__button slider__button--prev"
-                style={buttonStyle}
-                onClick={handlePrevButtonClick}
-              >
-                <IoChevronBack fontSize={"1.4rem"} />
-              </button>
-            )}
+          {isShowButtons !== false && (
+            <div className={buttonsClassName}>
+              {isShowButtonsPropValue.renderPrev ? (
+                isShowButtonsPropValue.renderPrev(handlePrevButtonClick)
+              ) : (
+                <button
+                  className="slider__button slider__button--prev"
+                  style={buttonStyle}
+                  onClick={handlePrevButtonClick}
+                >
+                  <IoChevronBack fontSize={"1.4rem"} />
+                </button>
+              )}
 
-            {isShowButtonsPropValue.renderNext ? (
-              isShowButtonsPropValue.renderNext(handleNextButtonClick)
-            ) : (
-              <button
-                className="slider__button slider__button--next"
-                style={buttonStyle}
-                onClick={handleNextButtonClick}
-              >
-                <IoChevronForward fontSize={"1.4rem"} />
-              </button>
-            )}
-          </div>
+              {isShowButtonsPropValue.renderNext ? (
+                isShowButtonsPropValue.renderNext(handleNextButtonClick)
+              ) : (
+                <button
+                  className="slider__button slider__button--next"
+                  style={buttonStyle}
+                  onClick={handleNextButtonClick}
+                >
+                  <IoChevronForward fontSize={"1.4rem"} />
+                </button>
+              )}
+            </div>
+          )}
 
           <div className="slider__dots" style={dotsStyle} ref={dotsRef}>
             {Array.from({ length: getNSlide() }, (_, i) => (
