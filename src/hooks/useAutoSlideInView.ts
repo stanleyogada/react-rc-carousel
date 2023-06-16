@@ -14,27 +14,29 @@ const useAutoSlideInView = (__isAutoSlide: ISliderProps["isAutoSlide"]) => {
   const [isAutoSlide, setIsAutoSlide] = useState(__isAutoSlide);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsAutoSlide(true);
-        } else {
-          setIsAutoSlide(false);
-        }
-      });
-    }, OBSERVER_OPTIONS);
+    if (__isAutoSlide) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsAutoSlide(true);
+          } else {
+            setIsAutoSlide(false);
+          }
+        });
+      }, OBSERVER_OPTIONS);
 
-    // Start observing the slider element
-    if (sliderRef.current) {
-      observer.observe(sliderRef.current);
-    }
-
-    // Cleanup the observer
-    return () => {
+      // Start observing the slider element
       if (sliderRef.current) {
-        observer.unobserve(sliderRef.current);
+        observer.observe(sliderRef.current);
       }
-    };
+
+      // Cleanup the observer
+      return () => {
+        if (sliderRef.current) {
+          observer.unobserve(sliderRef.current);
+        }
+      };
+    }
   }, []);
 
   return { isAutoSlide, sliderRef };

@@ -44,6 +44,7 @@ const Hero = () => {
       }}
       nSlidePerView={1}
       isShowButtons={false}
+      isAutoSlide={false}
     >
       <div style={heroStyle}>
         <div style={imageContainerStyle}>
